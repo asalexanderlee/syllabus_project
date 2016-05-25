@@ -12,21 +12,31 @@
   
   <div id="search">
   <form>
-   <select>
-  <option value="MUS">MUS</option>
-  <option value="MAT">MAT</option>
-  <option value="CSC">CSC</option>
-  <option value="ENG">ENG</option>
-</select><br><br>
   <input type="checkbox" name="visitable" id="hideme" >Classes that welcome visitors<br><br>
 </form> 
-    <p id="prof">Professors<img src="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-arrow-down-b-128.png" id="down_arrow"><img src="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-arrow-right-b-128.png" id="side_arrow"></p>
+    <p id="prof">Professors<img src="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-arrow-down-b-128.png" class="down_arrow" id="down_arrow_prof"><img src="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-arrow-right-b-128.png" class="side_arrow" id="side_arrow_prof"></p>
     <ul id="prof_list">
       <li class="prof_li"><input type="checkbox">Dr. Botelho</li>
       <li class="prof_li"><input type="checkbox">Dr. Camp</li>
       <li class="prof_li"><input type="checkbox">Dr. Green</li>
       <li class="prof_li"><input type="checkbox">Dr. Heyer</li>
     </ul>
+    
+    <p id="dept">Department<img src="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-arrow-down-b-128.png" class="down_arrow" id="down_arrow_dept"><img src="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-arrow-right-b-128.png" class="side_arrow" id="side_arrow_dept"></p>
+    <ul id="dept_list">
+      <li class="dept_li"><input type="checkbox">ENV</li>
+      <li class="dept_li"><input type="checkbox">HIS</li>
+      <li class="dept_li"><input type="checkbox">MAT</li>
+      <li class="dept_li"><input type="checkbox">MUS</li>
+    </ul>
+    <p id="class_size">Class Size<img src="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-arrow-down-b-128.png" class="down_arrow" id="down_arrow_class_size"><img src="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-arrow-right-b-128.png" class="side_arrow" id="side_arrow_class_size"></p>
+    <ul id="class_size_list">
+      <li class="class_size_li"><input type="checkbox">0 - 6</li>
+      <li class="class_size_li"><input type="checkbox">6 - 12</li>
+      <li class="class_size_li"><input type="checkbox">12 - 20</li>
+      <li class="class_size_li"><input type="checkbox">20 +</li>
+    </ul>
+  </div>
   </div>
   
   
@@ -36,34 +46,63 @@
     <h4>Search by subject and course number:</h4>
   <h5>Ex: MUS 101</h5>
    <div id="users">
+     <div id="search_box">
   <input class="search" placeholder="Search" />
   <button class="sort" data-sort="name">
     Sort by name
   </button>
+     </div>
 
   <ul class="list">
-    <li class="novisit">
+    <li class="novisit" id="page_1">
       <h3 class="name">MUS</h3>
       <p class="number">110</p>
       <p class="professor">Dr. Botelho</p>
     </li>
-    <li>
+    <li id="page_1">
       <h3 class="name">HIS</h3>
       <p class="number">312</p>
       <p class="professor">Dr. Camp</p>
     </li>
-    <li class="novisit">
+    <li class="novisit" id="page_1">
       <h3 class="name">MAT</h3>
       <p class="number">270</p>
       <p class="professor">Dr. Heyer</p>
     </li>
-    <li>
+    <li id="page_1">
       <h3 class="name">ENV</h3>
       <p class="number">839</p>
       <p class="professor">Dr. Green</p>
     </li>
+    <li id="page_1">
+      <h3 class="name">ENV</h3>
+      <p class="number">839</p>
+      <p class="professor">Dr. Green</p>
+    </li>
+    <li id="page_1">
+      <h3 class="name">ENV</h3>
+      <p class="number">839</p>
+      <p class="professor">Dr. Green</p>
+    </li>
+    <li id="page_two">
+      <h3 class="name">MUS</h3>
+      <p class="number">839</p>
+      <p class="professor">Dr. Botelho</p>
+    </li>
   </ul>
 
+  <ul class="pagination">
+  <li><a href="#">«</a></li>
+  <li id="1"><a class="active" href="#" onclick="change_page()">1</a></li>
+  <li id="2" class="page"><a href="#">2</a></li>
+  <li id="3" class="page"><a href="#">3</a></li>
+  <li id="4" class="page"><a href="#">4</a></li>
+  <li id="5" class="page"><a href="#">5</a></li>
+  <li id="6" class="page"><a href="#">6</a></li>
+  <li id="7" class="page"><a href="#">7</a></li>
+  <li id="8" class="page"><a href="#">8</a></li>
+  <li><a href="#">»</a></li>
+</ul>
 </div>
   
   
@@ -71,5 +110,3 @@
   
 </body>
 </html>
-
-
