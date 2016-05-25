@@ -1,24 +1,20 @@
 body {
   background-color: #660000;
-  #border:1px solid black;
 }
 
 h4 {
   color: black;
   font-family: cambria;
   text-align: center;
-  #border:1px solid black;
 }
 
 h5 {
   color: gray;
   text-align: center;
-  #border:1px solid black;
 }
 
 .search {
   display: inline-block;
-  #border:1px solid black;
 }
 #search {  
     background-color:#eeeeee;
@@ -34,6 +30,14 @@ h5 {
   height: 20%;
   float: right;
   padding: 1%;
+}
+
+#search_box {
+  text-align: center;
+}
+
+.search:hover{
+  cursor:auto;
 }
 
 #courselist {
@@ -96,9 +100,7 @@ input:focus {
   cursor: pointer;
   background-color:#1b8aba;
 }
-.sort:focus {
-  outline:none;
-}
+
 .sort:after {
   width: 0;
   height: 0;
@@ -139,6 +141,7 @@ input:focus {
   padding: 5px;
   border: 1px solid black;
   text-align: center;
+  margin:5px;
 }
 
 #prof:hover {
@@ -150,21 +153,90 @@ input:focus {
   display:block;
 }
 
-#prof_list {
-  display:none;
+#dept {
+  background-color: white;
+  color: black;
+  padding: 5px;
+  border: 1px solid black;
+  text-align: center;
+  margin:5px;
 }
 
-#down_arrow {
+#dept:hover {
+  cursor: pointer;
+  background-color: lightgray;
+}
+
+.dept_li {
+  display:block;
+}
+
+#class_size {
+  background-color: white;
+  color: black;
+  padding: 5px;
+  border: 1px solid black;
+  text-align: center;
+  margin:5px;
+}
+
+#class_size:hover {
+  cursor: pointer;
+  background-color: lightgray;
+}
+
+.class_size_li {
+  display:block;
+}
+
+.down_arrow {
   float: right;
-  display:none;
   margin: 1px;
   width: 15px;
   height: 15px;
 }
 
-#side_arrow {
+#down_arrow_prof {display: none;}
+#down_arrow_dept {display: none;}
+#down_arrow_class_size {display: none;}
+
+
+.side_arrow {
   float: right;
   margin: 1px;
   width: 15px;
   height: 15px;
+}
+
+ul.pagination {
+    display: inline-block;
+    padding: 0;
+    margin: 0;
+}
+
+ul.pagination li {display: inline;}
+
+ul.pagination li a {
+    color: black;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+}
+ul.pagination li a.active {
+    font-weight:bold;
+    font-size: 18px;
+}
+
+
+ul.pagination li a:hover:not(.active) {
+  font-weight:bold;
+  font-size: 18px;
+}
+
+#page_two {
+  display:none;
+}
+
+input:hover{
+  cursor:pointer;
 }
