@@ -1,11 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script src="https://code.jquery.com/jquery-2.1.4.js"></script>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
   <title>Search Page</title>
 </head>
+  <script src="http://listjs.com/no-cdn/list.js"></script>
 <body>
+  
+  
   <div id="search">
   <form>
    <select>
@@ -14,21 +18,56 @@
   <option value="CSC">CSC</option>
   <option value="ENG">ENG</option>
 </select><br><br>
-  <input type="checkbox" name="visitable" value="visitable">Classes that welcome visitors<br>
+  <input type="checkbox" name="visitable" id="hideme" >Classes that welcome visitors<br><br>
 </form> 
+    <p id="prof">Professors<img src="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-arrow-down-b-128.png" id="down_arrow"><img src="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-arrow-right-b-128.png" id="side_arrow"></p>
+    <ul id="prof_list">
+      <li class="prof_li"><input type="checkbox">Dr. Botelho</li>
+      <li class="prof_li"><input type="checkbox">Dr. Camp</li>
+      <li class="prof_li"><input type="checkbox">Dr. Green</li>
+      <li class="prof_li"><input type="checkbox">Dr. Heyer</li>
+    </ul>
   </div>
+  
+  
+  
   
   <div id="specific_search">
     <h4>Search by subject and course number:</h4>
   <h5>Ex: MUS 101</h5>
-   <form id="search_box">
-  <input type="search" name="search_class">
-</form>
-  </div>
+   <div id="users">
+  <input class="search" placeholder="Search" />
+  <button class="sort" data-sort="name">
+    Sort by name
+  </button>
+
+  <ul class="list">
+    <li class="novisit">
+      <h3 class="name">MUS</h3>
+      <p class="number">110</p>
+      <p class="professor">Dr. Botelho</p>
+    </li>
+    <li>
+      <h3 class="name">HIS</h3>
+      <p class="number">312</p>
+      <p class="professor">Dr. Camp</p>
+    </li>
+    <li class="novisit">
+      <h3 class="name">MAT</h3>
+      <p class="number">270</p>
+      <p class="professor">Dr. Heyer</p>
+    </li>
+    <li>
+      <h3 class="name">ENV</h3>
+      <p class="number">839</p>
+      <p class="professor">Dr. Green</p>
+    </li>
+  </ul>
+
+</div>
   
-  <iframe src="demo_iframe.htm" name="iframe_a"></iframe>
-<p><a href="http://www.w3schools.com" target="iframe_a"></a></p>
   
+    
   
 </body>
 </html>
