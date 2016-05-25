@@ -1,0 +1,44 @@
+body {
+  background-color: #660000;
+  #border:1px solid black;
+}
+
+h4 {
+  color: black;
+  font-family: cambria;
+  text-align: center;
+  #border:1px solid black;
+}
+
+h5 {
+  color: gray;
+  text-align: center;
+  #border:1px solid black;
+}
+
+#search_box{
+  text-align: center;
+  padding: 10px;
+  #border:1px solid black;
+}
+#search {  
+    background-color:#eeeeee;
+    height:100%;
+    width:25%;
+    float:left;
+    padding:10px;
+}
+
+#specific_search {
+  background-color: white;
+  width: 70%;
+  height: 20%;
+  float: right;
+}
+
+iframe {
+  width: 70%;
+  height: 100%;
+  float: right;
+  margin-top: 10px;
+}
