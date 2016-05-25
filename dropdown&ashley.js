@@ -101,3 +101,18 @@ $(document).ready(function() {
     $('.menuProf').dropit();
     $('.menuDay').dropit();
 });
+
+
+//filtering code
+
+var options = {
+  valueNames: [ 'name', 'number' ]
+};
+
+var userList = new List('users', options);
+
+$(document).ready(function(){
+  $("#hideme").click(function(){
+    $(".novisit").toggle();
+  });
+});
