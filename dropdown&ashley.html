@@ -6,58 +6,50 @@
   <meta name="viewport" content="width=device-width">
   <title>Search Page</title>
 </head>
+  <script src="http://listjs.com/no-cdn/list.js"></script>
 <body>
   <div id="search">
   <form>
-    <select>
-      <option value="MUS">MUS</option>
-      <option value="MAT">MAT</option>
-      <option value="CSC">CSC</option>
-      <option value="ENG">ENG</option>
-    </select>
-    <br>
-    <br>
-    <input type="checkbox" name="visitable" value="visitable">Classes that welcome visitors
-    <br>
-  </form> 
-    <ul class="menuProf">
-      <li> <a href="#">Professor<img src="https://image.freepik.com/free-icon/down-arrow-hand-drawn-sign_318-53286.jpg"
-            alt="downarrow"
-            style="width:9px;height:9px;"></a>
-        <ul>
-          <li><a href="#">Laurie Heyer</a></li>
-          <li><a href="#">Malcolm Campbell</a></li>
-          <li><a href="#">Raghu Ramanujan</a></li>
-          <li><a href="#">Chris Paradise</a></li>
-        </ul>
-      </li>
-    </ul>
-    <ul class="menuDay">
-      <li> <a href="#">Day<img src="https://image.freepik.com/free-icon/down-arrow-hand-drawn-sign_318-53286.jpg"
-            alt="downarrow"
-            style="width:9px;height:9px;"></a>
-        <ul>
-          <li><a href="#">Monday</a></li>
-          <li><a href="#">Tuesday</a></li>
-          <li><a href="#">Wednesday</a></li>
-          <li><a href="#">Thursday</a></li>
-          <li><a href="#">Friday</a></li>
-        </ul>
-      </li>
-    </ul>
-    
+   <select>
+  <option value="MUS">MUS</option>
+  <option value="MAT">MAT</option>
+  <option value="CSC">CSC</option>
+  <option value="ENG">ENG</option>
+</select><br><br>
+  <input type="checkbox" name="visitable" id="hideme" >Classes that welcome visitors<br>
+</form> 
   </div>
   
   <div id="specific_search">
     <h4>Search by subject and course number:</h4>
   <h5>Ex: MUS 101</h5>
-   <form id="search_box">
-  <input type="search" name="search_class">
-</form>
-  </div>
+   <div id="users">
+  <input class="search" placeholder="Search" />
+  <button class="sort" data-sort="name">
+    Sort by name
+  </button>
+
+  <ul class="list">
+    <li class="novisit">
+      <h3 class="name">MUS</h3>
+      <p class="number">110</p>
+    </li>
+    <li>
+      <h3 class="name">HIS</h3>
+      <p class="number">312</p>
+    </li>
+    <li class="novisit">
+      <h3 class="name">MAT</h3>
+      <p class="number">270</p>
+    </li>
+    <li>
+      <h3 class="name">ENV</h3>
+      <p class="number">839</p>
+    </li>
+  </ul>
+
+</div>
   
-  <iframe src="demo_iframe.htm" name="iframe_a"></iframe>
-<p><a href="http://www.w3schools.com" target="iframe_a"></a></p>
   
   
 </body>
