@@ -1,0 +1,96 @@
+<!DOCTYPE HTML>  
+<html>
+<head>
+<style>
+.error {color: #FF0000;}
+</style>
+</head>
+<body>  
+
+<?php
+// define variables and set to empty values
+$firstNameErr = $lastNameErr = $genderErr = $deptErr = $classnumErr = "";
+$firstName = $lastName = $gender = $comment = $dept = $classnum = $visitable = "";
+$thankyou = "";
+$errors = 0;
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+  if (empty($_POST["firstName"])) {
+    $firstNameErr = "First Name is required";
+    $errors++;
+  } else {
+    $firstName = test_input($_POST["firstName"]);
+  }
+  
+  if (empty($_POST["lastName"])) {
+    $lastNameErr = "Last Name is required";
+    $errors++;
+  } else {
+    $lastName = test_input($_POST["lastName"]);
+  }
+    
+  if (empty($_POST["dept"])) {
+    $deptErr = "Department is required";
+  } else {
+    $dept = test_input($_POST["dept"]);
+  }
+
+  $dept = test_input($_POST["dept"]);
+  
+  if (empty($_POST["classnum"])) {
+    $classnumErr = "Class Number is required";
+  } else {
+    $classnum = test_input($_POST["classnum"]);
+  }
+
+  if (empty($_POST["comment"])) {
+    $comment = "";
+  } else {
+    $comment = test_input($_POST["comment"]);
+  }
+
+  if (empty($_POST["gender"])) {
+    $genderErr = "Gender is required";
+    $errors++;
+  } else {
+    $gender = test_input($_POST["gender"]);
+  }
+  if ($errors === 0){
+  $thankyou = "Thank you for your submission!";
+  }
+}
+
+function test_input($data) {
+  $data = trim($data);
+  $data = stripslashes($data);
+  $data = htmlspecialchars($data);
+  return $data;
+}
+?>
+
+<h2>Syllabus Upload</h2>
+<p><span class="error">* required field.</span></p>
+<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">  
+  First Name: <input type="text" name="firstName">
+  <span class="error">* <?php echo $firstNameErr;?></span>
+  <br><br>
+  Last Name: <input type="text" name="lastName">
+  <span class="error">* <?php echo $lastNameErr;?></span>
+  <br><br>
+  Department: <input type="text" name="dept" placeholder="Ex: MAT">
+  <span class="error">* <?php echo $deptErr;?></span>
+  <br><br>
+	Class Number: <input type="text" name="classnum" placeholder="Ex: 110">
+  <span class="error">* <?php echo $classnumErr;?></span>
+  <br><br>
+  Further Comments on this syllabus: <br><textarea name="comment" rows="5" cols="40" placeholder="Optional"></textarea>
+  <br><br>
+  <input type="checkbox" name="visitable"> May prospective students visit your class?
+  <br><br>
+	  
+  <input type="submit" name="submit" value="Submit">  
+</form>
+<h2><?php echo $thankyou;?><h2>
+
+</body>
+</html>
