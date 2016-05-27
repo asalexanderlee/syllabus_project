@@ -19,6 +19,7 @@ background-color: #e6e6e6;
 margin: 40px;
 box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 8px 20px 0 rgba(0, 0, 0, 0.19);
 border: 3px solid #660002;
+min-width: 500px;
 }
 
 #davidson_logo {
@@ -37,26 +38,27 @@ form {
 margin-left: 10%;	
 }
 
-input, textarea {
+input, textarea, #email_id {
 margin: 3px;
 border:1px solid lightgray;
 border-radius: 4px;
 }
 
-input[type=text], textarea{
+input[type=text], input[type=number], textarea, #email_id{
 width: 25%;	
 padding: 4px;
 color: #800002;
 font-family: "times new roman";
 font-size: 13px;
+min-width: 150px;
 }
 
-input:focus, textarea:focus {
+input:focus, textarea:focus, #email_id:focus{
 background-color: #cccccc;	
 outline: 2px solid #cce6ff;
 }
 
-input:hover, textarea:hover {
+input:hover, textarea:hover, #email_id:hover{
 border-color:#999999;	
 }
 	
@@ -88,6 +90,15 @@ background-color: #cccccc;
 
 legend {
 color: #4da6ff;	
+}
+
+#privacy_choices{
+background-color:white;	
+margin-right:60%;
+border: 1px solid #bfbfbf;
+border-radius: 4px;
+min-width: 220px;
+padding: 5px;
 }
 
 </style>
@@ -174,7 +185,7 @@ function test_input($data) {
 <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
   
   
-	<fieldset><br><legend class="legends">Personal Information</legend>
+	<fieldset><br><legend>Personal Information</legend>
   	First Name: <br><input id="first_name" type="text" name="firstName" required>
  	<span class="error">* <?php echo $firstNameErr;?></span>
   	<br><br>
@@ -186,21 +197,22 @@ function test_input($data) {
 	<script>
 	var def_email="";
 		function getEmail(){
-			var fname = document.getElementById("first_name").value;
-			var lname = document.getElementById("last_name").value;
+			var fname = document.getElementById("first_name").value.toLowerCase();
+			var lname = document.getElementById("last_name").value.toLowerCase();
 			
-			def_email = def_email + substr(fname, 0, 2) + lname +"@davidson.edu";
+			def_email = def_email.concat(fname.substring(0, 2),lname, "@davidson.edu");
 			document.getElementById("email_id").value=def_email;
 			def_email = "";
 		}
 	</script>  	
-	Email:  <input id="email_id" onfocusin="getEmail()" class="inputs" type="email" name="email" required>
+	
+	Email:  <br><input id="email_id" onfocus="getEmail()" type="email" name="email" value ="" required>
 	<span class="error">* <?php echo $emailErr;?></span>
 	<br><br>
 	</fieldset>
 	
 	
-	<fieldset><legend class="legends">Class Information</legend><br>
+	<fieldset><legend>Class Information</legend><br>
   	Department: <br><input type="text" name="dept" placeholder="Ex: MAT" required>
   	<span class="error">* <?php echo $deptErr;?></span>
   	<br><br>
@@ -209,27 +221,34 @@ function test_input($data) {
   	<span class="error">* <?php echo $classnumErr;?></span>
   	<br><br>
 	  	
-	Year: <input class="inputs" type="number" name="year" value=<?php echo date("Y")?>>
+	Year: <br><input type="number" name="year" value=<?php echo date("Y")?>>
 	<span class="error">* <?php echo $yearErr;?></span>
 	<br/><br/>
 	Select Semester: <input type="radio" name="semester" value="fall" checked> Fall
 			             <input type="radio" name="semester" value="spring"> Spring <br><br>
 	</fieldset>
 	
-	<fieldset><legend class="legends">Privacy Settings</legend><br>
+	<fieldset><legend>Privacy Settings</legend><br>
 	I would like to share this syllabus with:<br><br>
-	<input type="radio" name="privacy" value="all" checked>Anyone<br>
-	<input type="radio" name="privacy" value="davidson"> Just Davidson Students<br>
-	<input type="radio" name="privacy" value="admin"> Only Select Administrators<br>
-		<br><br>
-		<input type="checkbox" name="visitable" checked> 
-		Prospective students may visit your class.<br><br>
+	<div id="privacy_choices">
+		<br>
+	<input type="radio" name="privacy" value="all" checked>Anyone<br><br>
+	<input type="radio" name="privacy" value="davidson"> Just Davidson Students<br><br>
+	<input type="radio" name="privacy" value="admin"> Only Select Administrators<br><br>
+	</div>
+	<br><br>
+		
+	<input type="checkbox" name="visitable" checked> 
+	Prospective students may visit your class.<br><br>
 	</fieldset>
 	
 		
-	<fieldset><legend class="legends">Syllabus Upload</legend>
+	<fieldset><legend>Syllabus Upload</legend>
 	  	
-  	Further Comments on this syllabus: <br><textarea name="comment" 
+  	<br>Upload Syllabus Here:<br>
+	  	<input type="file" id="syllabus" name="syllabus"><br><br>
+	  	
+	  	Further Comments on this syllabus: <br><textarea name="comment" 
 	  	rows="5" cols="40" placeholder="Optional"></textarea>
   	<br><br>  	
 	</fieldset>
