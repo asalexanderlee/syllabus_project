@@ -106,6 +106,8 @@ function test_input($data) {
 }
 ?>
 
+
+
 <h2 style="text-align:center;color:white;">Syllabus Upload</h2>
 <p><span class="error">* required field.</span></p>
 <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>"> 
@@ -120,7 +122,7 @@ function test_input($data) {
 	Last Name:  <input class="inputs" type="text" name="lastName">
 	<span class="error">* <?php echo $lastNameErr;?></span>
 	<br><br>
-	Email:  <input class="inputs" type="text" name="email">
+	Email:  <input class="inputs" type="email" name="email">
 	<span class="error">* <?php echo $emailErr;?></span>
 	<br><br>
 	</fieldset>	
@@ -135,7 +137,7 @@ function test_input($data) {
 		Class Number: <input class="inputs" type="number" name="classnum" placeholder="Ex: 110">
 		<span class="error">* <?php echo $classnumErr;?></span>
 		<br><br>
-		Year: <input class="inputs" type="number" name="year" placeholder="Ex: 2016">
+		Year: <input class="inputs" type="number" name="year" value=<?php echo date("Y");?>>
 		<span class="error">* <?php echo $yearErr;?></span>
 		<br/><br/>
 		Select Semester: <input type="radio" name="semester" value="fall" checked> Fall
@@ -155,8 +157,7 @@ function test_input($data) {
 	
 	<br/><br/>
 	Further Comments on this syllabus: 
-	<br><textarea name="comment" rows="5" cols="61" placeholder="Optional">
-	</textarea>
+	<br><textarea name="comment" rows="5" cols="61" placeholder="Optional"></textarea>
 	<br/><br/>	
 	<input type="submit" name="submit" value="Submit">  
 </form>
