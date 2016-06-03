@@ -34,9 +34,9 @@ h5 {
 #specific_search {
   background-color: white;
   width: 70%;
-  height: 20%;
   float: right;
   padding: 1%;
+  margin-bottom:10%;
 }
 
 #search_box {
@@ -61,25 +61,75 @@ h5 {
 
 .list {
   font-family:cambria;
-  padding:20px 0 0;
+  padding:20px;
 }
-.list > li {
+
+.list table{
+	border-collapse:collapse;	
+}
+	
+.list td{
+	padding:10px;
+	border:1px solid white;	
+}
+
+.list td:nth-child(even){
+	background-color:#e6e6e6;
+}
+	
+.list li {
   display:block;
   text-align: center;
   background-color: lightgray;
-  padding:10px;
   box-shadow: inset 0 1px 0 #fff;
 }
 
-.list > li:hover{
+.list li:hover{
 	outline: 2px solid #cce6ff;
 	cursor:pointer;	
 	background-color:#cccccc;
 }
 
-.avatar {
-  max-width: 150px;
+.yr_td{
+	width:7%%;
 }
+
+.dept_td{
+	width:7%;
+}
+
+.num_td{
+	width:9%;	
+}
+
+.prof_td{
+	width:15%;	
+}
+
+.day_td{
+	width:7%;	
+}
+
+.time_td{
+	width:7%;	
+}
+
+.bldg_td{
+	width:12%;	
+}
+
+.visit_td{
+	width:11%;	
+}
+
+.syl_td{
+	width:15%;	
+}
+
+.dist_td{
+	width:7%;
+}
+
 img {
   max-width: 100%;
 }
@@ -164,6 +214,12 @@ input:focus {
 	font-size:15px;
 }
 
+.dept_text{
+  text-decoration:none;
+  color:black;
+  cursor:help;	
+}
+
 #class_size {
   background-color: white;
   color: black;
@@ -237,6 +293,58 @@ input:focus {
 	padding:5px;	
 }
 
+#dist_req {
+  background-color: white;
+  color: black;
+  padding: 5px;
+  border: 1px solid black;
+  text-align: center;
+  margin:5px;
+}
+
+#dist_req:hover {
+  cursor: pointer;
+  background-color: lightgray;
+}
+
+.dist_req_text {
+  padding:5px;
+  font-size:15px;
+  text-decoration:none;
+  color:black;
+  cursor:help;
+}
+
+#dist_req_list td {
+  padding:5px;
+  width:40%;
+  margin-left:15%;
+}
+
+#dist_req_list{
+	display:block;	
+	margin-left:15%;
+}
+
+#year {
+  background-color: white;
+  color: black;
+  padding: 5px;
+  border: 1px solid black;
+  text-align: center;
+  margin:5px;
+}
+
+#year:hover {
+  cursor: pointer;
+  background-color: lightgray;
+}
+
+#year_dropdwn{
+	display:block;	
+}
+
+
 .down_arrow {
   float: right;
   margin: 1px;
@@ -255,7 +363,7 @@ input:focus {
   height: 15px;
 }
 
-#side_arrow_day, #side_arrow_time{
+#side_arrow_day, #side_arrow_time, #side_arrow_year, #side_arrow_dist_req{
 	display:none;	
 }
 
@@ -351,6 +459,58 @@ input:hover{
 	margin-left:20%;	
 }
 
+#morn_aft{
+	margin-top:10px;	
+}
+
+#year_dropdwn, select {
+
+     border: 0 !important;  /*Removes border*/
+     width: 100px;
+     margin:8px;
+     font-size:12px;
+     font-family:"cambria";
+	margin-left: 35%;
+	background-color: #d9d9d9;
+     color: #1455a2;
+}
+
+#year_dropdwn:hover{
+	cursor:pointer;
+	background-color:#cccccc;
+	outline:2px solid #cce6ff;	
+}
+
+#year_dropdwn:focus{
+	cursor:pointer;
+	background-color:#cccccc;
+	outline:none;	
+}
+
+.year_li{
+	padding:5px;
+	background-color:#d9d9d9;	
+	cursor:pointer;
+}
+
+.year_li:hover{
+	background-color:#b3ccff;
+}
+
+button{
+	padding:7px;
+	margin:7px;
+	margin-left:70%;
+	background-color:#cce6ff;	
+}
+
+button:hover{
+	background-color:#b3daff;	
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 8px 20px 0 rgba(0, 0, 0, 0.19);
+	transition:0.5s;
+	cursor:pointer;
+}
+
 </style>
 <script src="https://code.jquery.com/jquery-2.1.4.js"></script>
 <script src="list.js"></script>
@@ -385,6 +545,31 @@ $(document).ready(function(){
     $("#side_arrow_class_size").toggle();
   });
   
+  $("#time").click(function(){
+    $("#time_list").toggle();
+    $("#morn_aft").toggle();
+    $("#down_arrow_time").toggle();
+    $("#side_arrow_time").toggle();
+  });
+  
+  $("#year").click(function(){
+    $("#year_dropdwn").toggle();
+    $("#down_arrow_year").toggle();
+    $("#side_arrow_year").toggle();
+  });
+  
+  $("#day").click(function(){
+    $("#day_list").toggle();
+    $("#down_arrow_day").toggle();
+    $("#side_arrow_day").toggle();
+  });
+  
+  $("#dist_req").click(function(){
+    $("#dist_req_list").toggle();
+    $("#down_arrow_dist_req").toggle();
+    $("#side_arrow_dist_req").toggle();
+  });
+  
   var mornClassOn = false;
   $("#morn_classes").click(
   	function(){
@@ -412,20 +597,80 @@ $(document).ready(function(){
 		trClasses.prop("checked", false);	
 	}); */
 });
+	//indices of each field
+	var ACADEMIC_PERIOD = 0;
+	var SUBJECT = 1;
+	var COURSE_NUM = 2;
+	var SEQ_NUM = 3;
+	var CRN = 4;
+	var COURSE_TITLE = 5;
+	var MEET_DAYS = 6;
+	var CLASS_TIME = 7;
+	var BLDG_CODE = 8;
+	var ROOM_CODE = 9;
+	var INSTRUCTOR = 10;
+	var COURSE_ATTR = 11;
 	 
+	//mapping IDs to their indices
+	var idMap = {
+		ac_per:ACADEMIC_PERIOD,
+		dept:SUBJECT,
+		course_num:COURSE_NUM,
+		seq_num:SEQ_NUM,
+		crn:CRN,
+		title:COURSE_TITLE,
+		days:MEET_DAYS,
+		time:CLASS_TIME,
+		building:BLDG_CODE,
+		room:ROOM_CODE,
+		prof_check:INSTRUCTOR,
+		dist_req:COURSE_ATTR		
+	};
+	
 	function createQueryStr(){
-		
+		var ans = ["", "", "", "", "", "", "", "", "", "", "", ""];
 		var checkedBoxes = document.getElementsByClassName("test");
 		var i;
 		for(i = 0; i < checkedBoxes.length; i++){
 			var curElem = checkedBoxes[i];
 			if (curElem.checked){
 				//window.alert(curElem.id);
-				if (curElem.id == "prof"){
-					//do stuff	
+				if (curElem.id == "prof_check"){
+					var replacemt;
+					if(ans[INSTRUCTOR] != ""){
+						replacemt = ans[INSTRUCTOR].concat(" or ", curElem.value);
+					}
+					else{
+						replacemt = ans[INSTRUCTOR].concat(curElem.value);
+						
+					}
+					ans[INSTRUCTOR] = replacemt;
+				}
+				if (curElem.id == "dept_check"){
+					var replacemt;
+					if(ans[SUBJECT] != ""){
+						replacemt = ans[SUBJECT].concat(" or ", curElem.value);
+					}
+					else{
+						replacemt = ans[SUBJECT].concat(curElem.value);
+						
+					}
+					ans[SUBJECT] = replacemt;
+				}
+				if (curElem.id == "day_check"){
+					var replacemt;
+					if(ans[MEET_DAYS] != ""){
+						replacemt = ans[MEET_DAYS].concat(" or ", curElem.value);
+					}
+					else{
+						replacemt = ans[MEET_DAYS].concat(curElem.value);
+						
+					}
+					ans[MEET_DAYS] = replacemt;
 				}
 			}
-		}	 
+		}
+		window.alert(ans);	 
 	} 
 	
 </script>
@@ -440,18 +685,38 @@ $(document).ready(function(){
   
   <div id="filter">
   <form>
-  <input type="checkbox" name="visitable" id="hideme" >Classes that welcome visitors<br><br>
+  <input type="checkbox" name="visitable" id="hideme" >Classes that welcome visitors<br>
 </form> 
+	<p id="year">Semester<img src="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-arrow-down-b-128.png" class="down_arrow" id="down_arrow_year"><img src="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-arrow-right-b-128.png" class="side_arrow" id="side_arrow_year"></p>
+    <select name="years" id="year_dropdwn">
+  		<option value="201602" class="year_li" selected>Spring 2016</option>
+  		<option value="201601" class="year_li">Fall 2016</option>
+  		<option value="201502" class="year_li">Spring 2015</option>
+  		<option value="201501" class="year_li">Fall 2015</option>
+  		<option value="201402" class="year_li">Spring 2014</option>
+  		<option value="201401" class="year_li">Fall 2014</option>
+  		<option value="201302" class="year_li">Spring 2013</option>
+  		<option value="201301" class="year_li">Fall 2013</option>
+  		<option value="201202" class="year_li">Spring 2012</option>
+  		<option value="201201" class="year_li">Fall 2012</option>
+  		<option value="201102" class="year_li">Spring 2011</option>
+  		<option value="201101" class="year_li">Fall 2011</option>
+  		<option value="201002" class="year_li">Spring 2010</option>
+  		<option value="201001" class="year_li">Fall 2010</option>
+  		<option value="200902" class="year_li">Spring 2009</option>
+  		<option value="200901" class="year_li">Fall 2009</option>
+	</select>
+
     <p id="prof">Professors<img src="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-arrow-down-b-128.png" class="down_arrow" id="down_arrow_prof"><img src="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-arrow-right-b-128.png" class="side_arrow" id="side_arrow_prof"></p>
     <ul id="prof_list">
-    	<li class="prof_li"><input type="checkbox" class="test" id="prof" value="Dr. Botelho">Dr. Botelho</li>
-      	<li class="prof_li"><input type="checkbox" class="test" id="prof">Dr. Camp</li>
-     	<li class="prof_li"><input type="checkbox" class="test" id="prof">Dr. Green</li>
-    	<li class="prof_li"><input type="checkbox" class="test" id="prof">Dr. Heyer</li>
-		<li class="prof_li"><input type="checkbox" class="test" id="prof">Dr. Heyer</li>
-		<li class="prof_li"><input type="checkbox" class="test" id="prof">Dr. Heyer</li>
-		<li class="prof_li"><input type="checkbox" class="test" id="prof">Dr. Heyer</li>
-		<li class="prof_li"><input type="checkbox" class="test" id="prof">Dr. Heyer</li>
+    	<li class="prof_li"><input type="checkbox" class="test" id="prof_check" value="Dr. Botelho">Dr. Botelho</li>
+      	<li class="prof_li"><input type="checkbox" class="test" id="prof_check" value="Dr. Camp">Dr. Camp</li>
+     	<li class="prof_li"><input type="checkbox" class="test" id="prof_check">Dr. Green</li>
+    	<li class="prof_li"><input type="checkbox" class="test" id="prof_check">Dr. Heyer</li>
+		<li class="prof_li"><input type="checkbox" class="test" id="prof_check">Dr. Heyer</li>
+		<li class="prof_li"><input type="checkbox" class="test" id="prof_check">Dr. Heyer</li>
+		<li class="prof_li"><input type="checkbox" class="test" id="prof_check">Dr. Heyer</li>
+		<li class="prof_li"><input type="checkbox" class="test" id="prof_check">Dr. Heyer</li>
     </ul>
     
     <p id="dept">Department<img src="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-arrow-down-b-128.png" class="down_arrow" id="down_arrow_dept"><img src="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-arrow-right-b-128.png" class="side_arrow" id="side_arrow_dept"></p>
@@ -459,55 +724,59 @@ $(document).ready(function(){
 		    <tr>
 			    <td>    
     				<ul>
-      				<li class="dept_li"><input type="checkbox" class="dept" class="test">AFR</li>
-      				<li class="dept_li"><input type="checkbox" class="dept" class="test">ANT</li>
-      				<li class="dept_li"><input type="checkbox" class="dept" class="test">ARB</li>
-      				<li class="dept_li"><input type="checkbox" class="dept" class="test">ART</li>
-	      			<li class="dept_li"><input type="checkbox" class="dept" class="test">BIO</li>
-		   			<li class="dept_li"><input type="checkbox" class="dept" class="test">CHE</li>
-		      		<li class="dept_li"><input type="checkbox" class="dept" class="test">CHI</li>
-		      		<li class="dept_li"><input type="checkbox" class="dept" class="test">CIS</li>				      	<li class="dept_li"><input type="checkbox" class="dept" class="test">CLA</li>
-					<li class="dept_li"><input type="checkbox" class="dept" class="test">COM</li>
-					<li class="dept_li"><input type="checkbox" class="dept" class="test">CSC</li>
-					<li class="dept_li"><input type="checkbox" class="dept" class="test">DAN</li>		      			<li class="dept_li"><input type="checkbox" class="dept" class="test">DIG</li>
-					<li class="dept_li"><input type="checkbox" class="dept" class="test">ECO</li>
-					<li class="dept_li"><input type="checkbox" class="dept" class="test">EDU</li>
+      				<li class="dept_li"><input type="checkbox" id="dept_check" class="test" value="afr"><a href="" title="Africana Studies" class="dept_text">AFR</a></li>
+      				<li class="dept_li"><input type="checkbox" id="dept_check" class="test" value="ant"><a href="" title="Anthropology" class="dept_text">ANT</a></li>
+      				<li class="dept_li"><input type="checkbox" id="dept_check" class="test"><a href="" title="Arab Studies" class="dept_text">ARB</a></li>
+      				<li class="dept_li"><input type="checkbox" id="dept_check" class="test"><a href="" title="Art" class="dept_text">ART</a></li>
+	      			<li class="dept_li"><input type="checkbox" id="dept_check" class="test"><a href="" title="Biology" class="dept_text">BIO</a></li>
+		   			<li class="dept_li"><input type="checkbox" id="dept_check" class="test"><a href="" title="Chemistry" class="dept_text">CHE</a></li>
+		      		<li class="dept_li"><input type="checkbox" id="dept_check" class="test"><a href="" title="Chinese Studies" class="dept_text">CHI</a></li>
+		      		<li class="dept_li"><input type="checkbox" id="dept_check" class="test"><a href="" title="Center for Interdisciplinary Studies" class="dept_text">CIS</a></li>				    
+			      	<li class="dept_li"><input type="checkbox" id="dept_check" class="test"><a href="" title="Classical Civilization" class="dept_text">CLA</a></li>
+					<li class="dept_li"><input type="checkbox" id="dept_check" class="test"><a href="" title="Communication Studies" class="dept_text">COM</a></li>
+					<li class="dept_li"><input type="checkbox" id="dept_check" class="test"><a href="" title="Computer Science" class="dept_text">CSC</a></li>
+					<li class="dept_li"><input type="checkbox" id="dept_check" class="test"><a href="" title="Dance" class="dept_text">DAN</a></li>		      		
+					<li class="dept_li"><input type="checkbox" id="dept_check" class="test"><a href="" title="Digital Studies" class="dept_text">DIG</a></li>
+					<li class="dept_li"><input type="checkbox" id="dept_check" class="test"><a href="" title="Economics" class="dept_text">ECO</a></li>
+					<li class="dept_li"><input type="checkbox" id="dept_check" class="test"><a href="" title="Educational Studies" class="dept_text">EDU</a></li>
     				</ul>
     			</td>
     			<td>    
     				<ul>
-      					<li class="dept_li"><input type="checkbox" class="dept" class="test">ENG</li>
-      					<li class="dept_li"><input type="checkbox" class="dept" class="test">ENV</li>
-      					<li class="dept_li"><input type="checkbox" class="dept" class="test">ETH</li>
-      					<li class="dept_li"><input type="checkbox" class="dept" class="test">FMS</li>
-	      				<li class="dept_li"><input type="checkbox" class="dept" class="test">FRE</li>
-		      			<li class="dept_li"><input type="checkbox" class="dept" class="test">GER</li>
-			      		<li class="dept_li"><input type="checkbox" class="dept" class="test">GRE</li>
-			      		<li class="dept_li"><input type="checkbox" class="dept" class="test">GSS</li>
-				      	<li class="dept_li"><input type="checkbox" class="dept" class="test">HIS</li>
-					    <li class="dept_li"><input type="checkbox" class="dept" class="test">HUM</li>
-						<li class="dept_li"><input type="checkbox" class="dept" class="test">LAS</li>
-						<li class="dept_li"><input type="checkbox" class="dept" class="test">LAT</li>		      			<li class="dept_li"><input type="checkbox" class="dept" class="test">LIT</li>
-						<li class="dept_li"><input type="checkbox" class="dept" class="test">MAT</li>
-						<li class="dept_li"><input type="checkbox" class="dept" class="test">MHU</li>
+      					<li class="dept_li"><input type="checkbox" id="dept_check" class="test"><a href="" title="English" class="dept_text">ENG</a></li>
+      					<li class="dept_li"><input type="checkbox" id="dept_check" class="test"><a href="" title="Environmental Studies" class="dept_text">ENV</a></li>
+      					<li class="dept_li"><input type="checkbox" id="dept_check" class="test"><a href="" title="Ethics" class="dept_text">ETH</a></li>
+      					<li class="dept_li"><input type="checkbox" id="dept_check" class="test"><a href="" title="Film and Media Studies" class="dept_text">FMS</a></li>
+	      				<li class="dept_li"><input type="checkbox" id="dept_check" class="test"><a href="" title="French & Francophone Studies" class="dept_text">FRE</a></li>
+		      			<li class="dept_li"><input type="checkbox" id="dept_check" class="test"><a href="" title="German Studies" class="dept_text">GER</a></li>
+			      		<li class="dept_li"><input type="checkbox" id="dept_check" class="test"><a href="" title="Greek" class="dept_text">GRE</a></li>
+			      		<li class="dept_li"><input type="checkbox" id="dept_check" class="test"><a href="" title="Gender & Sexuality Studies" class="dept_text">GSS</a></li>
+				      	<li class="dept_li"><input type="checkbox" id="dept_check" class="test"><a href="" title="History" class="dept_text">HIS</a></li>
+					    <li class="dept_li"><input type="checkbox" id="dept_check" class="test"><a href="" title="Humanities" class="dept_text">HUM</a></li>
+						<li class="dept_li"><input type="checkbox" id="dept_check" class="test"><a href="" title="Latin American Studies" class="dept_text">LAS</a></li>
+						<li class="dept_li"><input type="checkbox" id="dept_check" class="test"><a href="" title="Latin" class="dept_text">LAT</a></li>	
+						<li class="dept_li"><input type="checkbox" id="dept_check" class="test"><a href="" title="??" class="dept_text">LIT</a></li>	      			
+						<li class="dept_li"><input type="checkbox" id="dept_check" class="test"><a href="" title="Math" class="dept_text">MAT</a></li>
+						<li class="dept_li"><input type="checkbox" id="dept_check" class="test"><a href="" title="??" class="dept_text">MHU</a></li>
     				</ul>
     			</td>
     			<td>    
     				<ul>
-      					<li class="dept_li"><input type="checkbox" class="dept" class="test">MIL</li>
-      					<li class="dept_li"><input type="checkbox" class="dept" class="test">MUS</li>
-      					<li class="dept_li"><input type="checkbox" class="dept" class="test">PED</li>
-      					<li class="dept_li"><input type="checkbox" class="dept" class="test">PHI</li>
-	      				<li class="dept_li"><input type="checkbox" class="dept" class="test">PHY</li>
-		      			<li class="dept_li"><input type="checkbox" class="dept" class="test">POL</li>
-			      		<li class="dept_li"><input type="checkbox" class="dept" class="test">PSY</li>
-			      		<li class="dept_li"><input type="checkbox" class="dept" class="test">REL</li>
-				      	<li class="dept_li"><input type="checkbox" class="dept" class="test">RUS</li>
-					    <li class="dept_li"><input type="checkbox" class="dept" class="test">SIL</li>
-						<li class="dept_li"><input type="checkbox" class="dept" class="test">SOC</li>
-						<li class="dept_li"><input type="checkbox" class="dept" class="test">SOU</li>		      			<li class="dept_li"><input type="checkbox" class="dept" class="test">SPA</li>
-						<li class="dept_li"><input type="checkbox" class="dept" class="test">THE</li>
-						<li class="dept_li"><input type="checkbox" class="dept" class="test">WRI</li>
+      					<li class="dept_li"><input type="checkbox" id="dept_check" class="test"><a href="" title="Military Studies" class="dept_text">MIL</a></li>
+      					<li class="dept_li"><input type="checkbox" id="dept_check" class="test"><a href="" title="Music" class="dept_text">MUS</a></li>
+      					<li class="dept_li"><input type="checkbox" id="dept_check" class="test"><a href="" title="Physical Education" class="dept_text">PED</a></li>
+      					<li class="dept_li"><input type="checkbox" id="dept_check" class="test"><a href="" title="Philosophy" class="dept_text">PHI</a></li>
+	      				<li class="dept_li"><input type="checkbox" id="dept_check" class="test"><a href="" title="Physics" class="dept_text">PHY</a></li>
+		      			<li class="dept_li"><input type="checkbox" id="dept_check" class="test"><a href="" title="Political Science" class="dept_text">POL</a></li>
+			      		<li class="dept_li"><input type="checkbox" id="dept_check" class="test"><a href="" title="Psychology" class="dept_text">PSY</a></li>
+			      		<li class="dept_li"><input type="checkbox" id="dept_check" class="test"><a href="" title="Religion" class="dept_text">REL</a></li>
+				      	<li class="dept_li"><input type="checkbox" id="dept_check" class="test"><a href="" title="Russian Studies" class="dept_text">RUS</a></li>
+					    <li class="dept_li"><input type="checkbox" id="dept_check" class="test"><a href="" title="Self-Instructional Languages" class="dept_text">SIL</a></li>
+						<li class="dept_li"><input type="checkbox" id="dept_check" class="test"><a href="" title="Sociology" class="dept_text">SOC</a></li>
+						<li class="dept_li"><input type="checkbox" id="dept_check" class="test"><a href="" title="South Asian Studies" class="dept_text">SOU</a></li>		      			
+						<li class="dept_li"><input type="checkbox" id="dept_check" class="test"><a href="" title="Spanish" class="dept_text">SPA</a></li>
+						<li class="dept_li"><input type="checkbox" id="dept_check" class="test"><a href="" title="Theatre" class="dept_text">THE</a></li>
+						<li class="dept_li"><input type="checkbox" id="dept_check" class="test"><a href="" title="Writing" class="dept_text">WRI</a></li>
     				</ul>
     			</td>
     		</tr>
@@ -515,13 +784,15 @@ $(document).ready(function(){
     
     <p id="day">Day<img src="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-arrow-down-b-128.png" class="down_arrow" id="down_arrow_day"><img src="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-arrow-right-b-128.png" class="side_arrow" id="side_arrow_day"></p>
     <div id="day_list">
-      <p class="day_li"><input type="checkbox" id="mwf" class="day" class="test">MWF</p>
-      <p class="day_li"><input type="checkbox" id="tr" class="day" class="test">TR</p>
+      <p class="day_li"><input type="checkbox" id="day_check" class="test" value="mwf">MWF</p>
+      <p class="day_li"><input type="checkbox" id="day_check" class="test" value="tr">TR</p>
     </div>
     
-    <p id="time">Time<img src="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-arrow-down-b-128.png" class="down_arrow" id="down_arrow_time"><img src="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-arrow-right-b-128.png" class="side_arrow" id="side_arrow_time"></p><br>
+    <p id="time">Time<img src="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-arrow-down-b-128.png" class="down_arrow" id="down_arrow_time"><img src="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-arrow-right-b-128.png" class="side_arrow" id="side_arrow_time"></p>
+	<div id="morn_aft">
 	<input type="checkbox" id="morn_classes">Morning
 	<input type="checkbox" id="aft_classes">Afternoon
+	</div>
 	<table id="time_list">
 		<tr>
 			<td>
@@ -548,6 +819,21 @@ $(document).ready(function(){
 		</tr>
 	</table>
     
+    <p id="dist_req">Distribution Requirements<img src="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-arrow-down-b-128.png" class="down_arrow" id="down_arrow_dist_req"><img src="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-arrow-right-b-128.png" class="side_arrow" id="side_arrow_dist_req"></p>
+    <table id="dist_req_list">
+	    <td>
+		    <input type="checkbox" value="HTRQ" class="dist_req_li"><a href="" title="Historical Thought" class="dist_req_text">HTRQ</a><br>
+			<input type="checkbox" value="LBRQ" class="dist_req_li"><a href="" title="Liberal Studies" class="dist_req_text">LBRQ</a><br>
+			<input type="checkbox" value="LTRQ" class="dist_req_li"><a href="" title="Literary Studies, Creative Writing, and Rhetoric" class="dist_req_text">LTRQ</a><br>
+			<input type="checkbox" value="MQRQ" class="dist_req_li"><a href="" title="Mathematical and Quantitative Thought" class="dist_req_text">MQRQ</a><br>
+		</td>
+		<td>
+		    <input type="checkbox" value="NSRQ" class="dist_req_li"><a href="" title="Natural Science" class="dist_req_text">NSRQ</a><br>
+			<input type="checkbox" value="PRRQ" class="dist_req_li"><a href="" title="Philosophical and Religious Perspectives" class="dist_req_text">PRRQ</a><br>
+			<input type="checkbox" value="SSRQ" class="dist_req_li"><a href="" title="Social-Scientific Thought" class="dist_req_text">SSRQ</a><br>
+			<input type="checkbox" value="VPRQ" class="dist_req_li"><a href="" title="Visual and Performing Arts" class="dist_req_text">VPRQ</a><br>
+		</td>
+	</table>
     <p id="class_size">Class Size<img src="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-arrow-down-b-128.png" class="down_arrow" id="down_arrow_class_size"><img src="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-arrow-right-b-128.png" class="side_arrow" id="side_arrow_class_size"></p>
     <ul id="class_size_list">
       <li class="class_size_li"><input type="checkbox">0 - 6</li>
@@ -555,9 +841,10 @@ $(document).ready(function(){
       <li class="class_size_li"><input type="checkbox">12 - 20</li>
       <li class="class_size_li"><input type="checkbox">20 +</li>
     </ul>
+    <button type="button" onclick="createQueryStr()">Apply</button><br>
   </div>
   
-  <button type="button" onclick="createQueryStr()">Test</button>
+  
   </div>
   
   <div id="specific_search">
@@ -585,42 +872,120 @@ $(document).ready(function(){
 
   <ul class="list">
     <li class="novisit" id="page_1">
-      <h3 class="name">MUS</h3>
-      <p class="number">110</p>
-      <p class="professor">Dr. Botelho</p>
+	    <table>
+		    <tr>
+			   <td class="yr_td">Spring 2016</td>
+			   <td class="dept_td">SPA</td>
+      			<td class="num_td">322</td>
+      			<td class="prof_td">Willis A</td>
+      			<td class="day_td">T R</td>
+      			<td class="time_td">1215-0130</td>
+      			<td class="bldg_td">CHAM 3198</td>
+      			<td class="dist_td">LTRQ</td>
+      			<td class="visit_td">Cannot Visit</td>
+      			<td class="syl_td"><a href="">Download Syllabus</a>
+      		</tr>
+      	</table>
     </li>
     <li id="page_1">
-      <h3 class="name">HIS</h3>
-      <p class="number">312</p>
-      <p class="professor">Dr. Camp</p>
+	    <table>
+		    <tr>
+			   <td class="yr_td">Spring 2016</td>
+			   <td class="dept_td">MAT</td>
+      			<td class="num_td">315A</td>
+      			<td class="prof_td">Neidinger R</td>
+      			<td class="day_td">T R</td>
+      			<td class="time_td">1215-0130</td>
+      			<td class="bldg_td">LIB B110</td>
+      			<td class="dist_td">MQRQ</td>
+      			<td class="visit_td">Can Visit</td>
+      			<td class="syl_td"><a href="">Download Syllabus</a>
+      		</tr>
+      	</table>
     </li>
     <li class="novisit" id="page_1">
-      <h3 class="name">MAT</h3>
-      <p class="number">270</p>
-      <p class="professor">Dr. Heyer</p>
+      <table>
+		    <tr>
+			   <td class="yr_td">Spring 2016</td>
+			   <td class="dept_td">HUM</td>
+      			<td class="num_td">251LE</td>
+      			<td class="prof_td">Lerner N</td>
+      			<td class="day_td">M W F</td>
+      			<td class="time_td">1130-1230</td>
+      			<td class="bldg_td">SLOAN B011</td>
+      			<td class="dist_td">HTRQ LBRQ LTRQ PRRQ</td>
+      			<td class="visit_td">Cannot Visit</td>
+      			<td class="syl_td"><a href="">Download Syllabus</a>
+      		</tr>
+      	</table>
     </li>
     <li id="page_1">
-      <h3 class="name">ENV</h3>
-      <p class="number">839</p>
-      <p class="professor">Dr. Green</p>
+      <table>
+		    <tr>
+			   <td class="yr_td">Spring 2016</td>
+			   <td class="dept_td">ANT</td>
+      			<td class="num_td">371</td>
+      			<td class="prof_td">Bowles L</td>
+      			<td class="day_td">W</td>
+      			<td class="time_td">0130-0420</td>
+      			<td class="bldg_td">CHAM 2198</td>
+      			<td class="dist_td">None</td>
+      			<td class="visit_td">Can Visit</td>
+      			<td class="syl_td"><a href="">Download Syllabus</a>
+      		</tr>
+      	</table>
     </li>
     <li id="page_1">
-      <h3 class="name">ENV</h3>
-      <p class="number">839</p>
-      <p class="professor">Dr. Green</p>
+      <table>
+		    <tr>
+			   <td class="yr_td">Spring 2016</td>
+			   <td class="dept_td">MAT</td>
+      			<td class="num_td">315A</td>
+      			<td class="prof_td">Neidinger R</td>
+      			<td class="day_td">T R</td>
+      			<td class="time_td">1215-0130</td>
+      			<td class="bldg_td">LIB B110</td>
+      			<td class="dist_td">MQRQ</td>
+      			<td class="visit_td">Can Visit</td>
+      			<td class="syl_td"><a href="">Download Syllabus</a>
+      		</tr>
+      	</table>
     </li>
     <li id="page_1">
-      <h3 class="name">ENV</h3>
-      <p class="number">839</p>
-      <p class="professor">Dr. Green</p>
+      <table>
+		    <tr>
+			   <td class="yr_td">Spring 2016</td>
+			   <td class="dept_td">MAT</td>
+      			<td class="num_td">315A</td>
+      			<td class="prof_td">Neidinger R</td>
+      			<td class="day_td">T R</td>
+      			<td class="time_td">1215-0130</td>
+      			<td class="bldg_td">LIB B110</td>
+      			<td class="dist_td">MQRQ</td>
+      			<td class="visit_td">Can Visit</td>
+      			<td class="syl_td"><a href="">Download Syllabus</a>
+      		</tr>
+      	</table>
     </li>
     <li id="page_two">
-      <h3 class="name">MUS</h3>
-      <p class="number">839</p>
-      <p class="professor">Dr. Botelho</p>
+      <table>
+		    <tr>
+			   <td class="yr_td">Spring 2016</td>
+			   <td class="dept_td">MAT</td>
+      			<td class="num_td">315A</td>
+      			<td class="prof_td">Neidinger R</td>
+      			<td class="day_td">T R</td>
+      			<td class="time_td">1215-0130</td>
+      			<td class="bldg_td">LIB B110</td>
+      			<td class="dist_td">MQRQ</td>
+      			<td class="visit_td">Can Visit</td>
+      			<td class="syl_td"><a href="">Download Syllabus</a>
+      		</tr>
+      	</table>
     </li>
-  </ul>
 
+      </ul>
+<!--
   <ul class="pagination">
   <li><a href="#">«</a></li>
   <li id="1"><a class="active" href="#" onclick="change_page()">1</a></li>
@@ -633,10 +998,9 @@ $(document).ready(function(){
   <li id="8" class="page"><a href="#">8</a></li>
   <li><a href="#">»</a></li>
 </ul>
+-->
+
+
 </div>
-  
-  
-    
-  
 </body>
 </html>
