@@ -1,15 +1,14 @@
 <!DOCTYPE html>
 <html>
-<head>
-	
+<head>	
 <link rel="stylesheet" type="text/css" href="search.css">
 <script src="https://code.jquery.com/jquery-2.1.4.js"></script>
 <script src="list.js"></script>
 <script>
-	  
-	  var options = {
-  valueNames: [ 'name', 'number', 'professor' ]
-};
+ 	  
+	var options = {
+  		valueNames: [ 'name', 'number', 'professor' ]
+	}; 
 
 var userList = new List('users', options);
 
@@ -346,7 +345,7 @@ $(document).ready(function(){
   		<input class="search" placeholder="Search" />
   
   		<div class="dropdown">
-  			<button class="dropbtn">Dropdown</button>
+  			<button class="dropbtn">Sort By:</button>
   			<div class="dropdown-content">
 				<p class="sort" data-sort="professor">
     			A to Z by Professor
