@@ -158,8 +158,39 @@ $(document).ready(function(){
 					}
 					ans[MEET_DAYS] = replacemt;
 				}
+				if (curElem.id == "time_check"){
+					var replacemt;
+					if(ans[CLASS_TIME] != ""){
+						replacemt = ans[CLASS_TIME].concat(" or ", curElem.value);
+					}
+					else{
+						replacemt = ans[CLASS_TIME].concat(curElem.value);
+						
+					}
+					ans[CLASS_TIME] = replacemt;
+				}
+				if (curElem.id == "dist_req_check"){
+					var replacemt;
+					if(ans[CLASS_TIME] != ""){
+						replacemt = ans[CLASS_TIME].concat(" or ", curElem.value);
+					}
+					else{
+						replacemt = ans[CLASS_TIME].concat(curElem.value);
+						
+					}
+					ans[CLASS_TIME] = replacemt;
+				}
 			}
 		}
+			
+		var semDropdown = document.getElementById("year_dropdwn");
+		var semChoices = semDropdown.options;
+		var semAns = semChoices[semDropdown.selectedIndex];
+		var replacemt;
+		replacemt = ans[SEQ_NUM].concat(semAns.value);
+		ans[SEQ_NUM] = replacemt;
+		
+		
 		window.alert(ans);	 
 	} 
 	
@@ -179,22 +210,22 @@ $(document).ready(function(){
 </form> 
 	<p id="year">Semester<img src="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-arrow-down-b-128.png" class="down_arrow" id="down_arrow_year"><img src="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-arrow-right-b-128.png" class="side_arrow" id="side_arrow_year"></p>
     <select name="years" id="year_dropdwn">
-  		<option value="201602" class="year_li" selected>Spring 2016</option>
-  		<option value="201601" class="year_li">Fall 2016</option>
-  		<option value="201502" class="year_li">Spring 2015</option>
-  		<option value="201501" class="year_li">Fall 2015</option>
-  		<option value="201402" class="year_li">Spring 2014</option>
-  		<option value="201401" class="year_li">Fall 2014</option>
-  		<option value="201302" class="year_li">Spring 2013</option>
-  		<option value="201301" class="year_li">Fall 2013</option>
-  		<option value="201202" class="year_li">Spring 2012</option>
-  		<option value="201201" class="year_li">Fall 2012</option>
-  		<option value="201102" class="year_li">Spring 2011</option>
-  		<option value="201101" class="year_li">Fall 2011</option>
-  		<option value="201002" class="year_li">Spring 2010</option>
-  		<option value="201001" class="year_li">Fall 2010</option>
-  		<option value="200902" class="year_li">Spring 2009</option>
-  		<option value="200901" class="year_li">Fall 2009</option>
+  		<option value="201602" idclass="year_li" selected>Spring 2016</option>
+  		<option value="201601" id="sem_check" class="year_li">Fall 2016</option>
+  		<option value="201502" id="sem_check" class="year_li">Spring 2015</option>
+  		<option value="201501" id="sem_check" class="year_li">Fall 2015</option>
+  		<option value="201402" id="sem_check" class="year_li">Spring 2014</option>
+  		<option value="201401" id="sem_check" class="year_li">Fall 2014</option>
+  		<option value="201302" id="sem_check" class="year_li">Spring 2013</option>
+  		<option value="201301" id="sem_check" class="year_li">Fall 2013</option>
+  		<option value="201202" id="sem_check" class="year_li">Spring 2012</option>
+  		<option value="201201" id="sem_check" class="year_li">Fall 2012</option>
+  		<option value="201102" id="sem_check" class="year_li">Spring 2011</option>
+  		<option value="201101" id="sem_check" class="year_li">Fall 2011</option>
+  		<option value="201002" id="sem_check" class="year_li">Spring 2010</option>
+  		<option value="201001" id="sem_check" class="year_li">Fall 2010</option>
+  		<option value="200902" id="sem_check" class="year_li">Spring 2009</option>
+  		<option value="200901" id="sem_check" class="year_li">Fall 2009</option>
 	</select>
 
     <p id="prof">Professors<img src="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-arrow-down-b-128.png" class="down_arrow" id="down_arrow_prof"><img src="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-arrow-right-b-128.png" class="side_arrow" id="side_arrow_prof"></p>
@@ -287,23 +318,23 @@ $(document).ready(function(){
 		<tr>
 			<td>
     		<ul id="time_list_MWF">
-      			<li class="time_li"><input type="checkbox" class="morn" value="8:30am" class="test">8:30am</li>
-      			<li class="time_li"><input type="checkbox" class="morn" value="9:30am" class="test">9:30am</li>
-      			<li class="time_li"><input type="checkbox" class="morn" value="10:30am" class="test">10:30am</li>
-      			<li class="time_li"><input type="checkbox" class="morn" value="11:30am" class="test">11:30am</li>
-	  			<li class="time_li"><input type="checkbox" class="aft" value="12:30pm" class="test">12:30pm</li>
-				<li class="time_li"><input type="checkbox" class="aft" value="1:30pm" class="test">1:30pm</li>
-				<li class="time_li"><input type="checkbox" class="aft" value="2:30pm" class="test">2:30pm</li>
-				<li class="time_li"><input type="checkbox" class="aft" value="3:30pm" class="test">3:30pm</li>
+      			<li class="time_li"><input type="checkbox" id="time_check" class="morn test" value="8:30am">8:30am</li>
+      			<li class="time_li"><input type="checkbox" id="time_check" class="morn test" value="9:30am">9:30am</li>
+      			<li class="time_li"><input type="checkbox" id="time_check" class="morn test" value="10:30am">10:30am</li>
+      			<li class="time_li"><input type="checkbox" id="time_check" class="morn test" value="11:30am">11:30am</li>
+	  			<li class="time_li"><input type="checkbox" id="time_check" class="aft test" value="12:30pm">12:30pm</li>
+				<li class="time_li"><input type="checkbox" id="time_check" class="aft test" value="1:30pm">1:30pm</li>
+				<li class="time_li"><input type="checkbox" id="time_check" class="aft test" value="2:30pm">2:30pm</li>
+				<li class="time_li"><input type="checkbox" id="time_check" class="aft test" value="3:30pm">3:30pm</li>
     		</ul>
     		</td>
 	    	<td>
     		<ul id="time_list_TR">
-	 			<li class="time_li"><input type="checkbox" class="morn" value="8:15am" class="test">8:15am</li>
-      			<li class="time_li"><input type="checkbox" class="morn" value="9:40am" class="test">9:40am</li>
-      			<li class="time_li"><input type="checkbox" class="aft" value="12:15pm" class="test">12:15pm</li>
-      			<li class="time_li"><input type="checkbox" class="aft" value="1:40pm" class="test">1:40pm</li>
-	  			<li class="time_li"><input type="checkbox" class="aft" value="3:15pm" class="test">3:15pm</li>
+	 			<li class="time_li"><input type="checkbox" id="time_check" class="morn test" value="8:15am">8:15am</li>
+      			<li class="time_li"><input type="checkbox" id="time_check" class="morn test" value="9:40am">9:40am</li>
+      			<li class="time_li"><input type="checkbox" id="time_check" class="aft test" value="12:15pm">12:15pm</li>
+      			<li class="time_li"><input type="checkbox" id="time_check" class="aft test" value="1:40pm">1:40pm</li>
+	  			<li class="time_li"><input type="checkbox" id="time_check" class="aft test" value="3:15pm">3:15pm</li>
 				</ul>
 			</td>
 		</tr>
@@ -312,16 +343,16 @@ $(document).ready(function(){
     <p id="dist_req">Distribution Requirements<img src="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-arrow-down-b-128.png" class="down_arrow" id="down_arrow_dist_req"><img src="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-arrow-right-b-128.png" class="side_arrow" id="side_arrow_dist_req"></p>
     <table id="dist_req_list">
 	    <td>
-		    <input type="checkbox" value="HTRQ" class="dist_req_li"><a href="" title="Historical Thought" class="dist_req_text">HTRQ</a><br>
-			<input type="checkbox" value="LBRQ" class="dist_req_li"><a href="" title="Liberal Studies" class="dist_req_text">LBRQ</a><br>
-			<input type="checkbox" value="LTRQ" class="dist_req_li"><a href="" title="Literary Studies, Creative Writing, and Rhetoric" class="dist_req_text">LTRQ</a><br>
-			<input type="checkbox" value="MQRQ" class="dist_req_li"><a href="" title="Mathematical and Quantitative Thought" class="dist_req_text">MQRQ</a><br>
+		    <input type="checkbox" value="HTRQ" id="dist_req_check" class="dist_req_li test"><a href="" title="Historical Thought" class="dist_req_text">HTRQ</a><br>
+			<input type="checkbox" value="LBRQ" id="dist_req_check" class="dist_req_li test"><a href="" title="Liberal Studies" class="dist_req_text">LBRQ</a><br>
+			<input type="checkbox" value="LTRQ" id="dist_req_check" class="dist_req_li test"><a href="" title="Literary Studies, Creative Writing, and Rhetoric" class="dist_req_text">LTRQ</a><br>
+			<input type="checkbox" value="MQRQ" id="dist_req_check" class="dist_req_li test"><a href="" title="Mathematical and Quantitative Thought" class="dist_req_text">MQRQ</a><br>
 		</td>
 		<td>
-		    <input type="checkbox" value="NSRQ" class="dist_req_li"><a href="" title="Natural Science" class="dist_req_text">NSRQ</a><br>
-			<input type="checkbox" value="PRRQ" class="dist_req_li"><a href="" title="Philosophical and Religious Perspectives" class="dist_req_text">PRRQ</a><br>
-			<input type="checkbox" value="SSRQ" class="dist_req_li"><a href="" title="Social-Scientific Thought" class="dist_req_text">SSRQ</a><br>
-			<input type="checkbox" value="VPRQ" class="dist_req_li"><a href="" title="Visual and Performing Arts" class="dist_req_text">VPRQ</a><br>
+		    <input type="checkbox" value="NSRQ" id="dist_req_check" class="dist_req_li test"><a href="" title="Natural Science" class="dist_req_text">NSRQ</a><br>
+			<input type="checkbox" value="PRRQ" id="dist_req_check" class="dist_req_li test"><a href="" title="Philosophical and Religious Perspectives" class="dist_req_text">PRRQ</a><br>
+			<input type="checkbox" value="SSRQ" id="dist_req_check" class="dist_req_li test"><a href="" title="Social-Scientific Thought" class="dist_req_text">SSRQ</a><br>
+			<input type="checkbox" value="VPRQ" id="dist_req_check" class="dist_req_li test"><a href="" title="Visual and Performing Arts" class="dist_req_text">VPRQ</a><br>
 		</td>
 	</table>
     <p id="class_size">Class Size<img src="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-arrow-down-b-128.png" class="down_arrow" id="down_arrow_class_size"><img src="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-arrow-right-b-128.png" class="side_arrow" id="side_arrow_class_size"></p>
