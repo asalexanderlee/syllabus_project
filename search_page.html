@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>	
-<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='search.css') }}">
+<link rel="stylesheet" type="text/css" href="search.css">
 <script src="https://code.jquery.com/jquery-2.1.4.js"></script>
 <script src="list.js"></script>
 <script>
@@ -390,23 +390,25 @@ $(document).ready(function(){
      </div>
 	</div>
 	
-  <div class="result_list">
-	  
-  	<table border="1" style="width:100%">
-	{% for i in search_results %}
+  <ul class="result_list">	  
+	<li>
+  	<table>
+	<!--{% for i in search_results %}-->
 		<tr>
-			<td>{{i[0]}}</td>
-			<td>{{i[1]}}</td>
-			<td>{{i[2]}}</td>
-			<td>{{i[3]}}</td>
-			<td>{{i[4]}}</td>
-			<td>{{i[5]}}</td>
-			<td>{{i[6]}}</td>
+			<td class="dept_num_td">{{i[0]}}</td>
+			<td class="title_td">{{i[1]}}</td>
+			<td class="prof_td">{{i[2]}}</td>
+			<td class="time_td">{{i[3]}}</td>
+			<td class="day_td">{{i[4]}}</td>
+			<td class="dist_td">{{i[5]}}</td>
+			<td class="bldg_td">{{i[6]}}</td>
+			<td class="visit_td">{{i[7]}}</td>
+			<td class="syl_td">{{i[8]}}</td>
 		</tr>	
-	{% endfor %}
+	<!--{% endfor %}-->
 	</table>	
-
-  </div>
+	</li>
+  </ul>
 <!--
   <ul class="pagination">
   <li><a href="#">«</a></li>
