@@ -12,8 +12,12 @@ body {
 	top:8px;	
 }
 
-input[type="checkbox"]{
-	cursor:pointer;
+#prof_search{
+   float:right;
+}
+#prof_search:focus{
+   outline:2px solid #cce6ff;
+   background-color: #cccccc;	
 }
 
 
@@ -93,6 +97,7 @@ input[type="checkbox"]{
    height:145px;
    overflow:scroll;	
 }
+
 .prof_li {
   display:block;	  
   padding:3px;
@@ -378,7 +383,9 @@ h5 {		      /*Ex:MUS 110*/
 }
 
 .result_list table{
-	border-collapse:collapse;	
+	border-collapse:collapse;
+	width:100%;
+	background-color:lightgray;
 }
 
 .result_list li {
@@ -396,27 +403,28 @@ h5 {		      /*Ex:MUS 110*/
 
 .result_list td{
 	padding:10px;
-	border:1px solid white;	
+	border:1px solid white;
+	background-color:lightgray;
 }
 
 .result_list td:nth-child(even){
 	background-color:#e6e6e6;
 }
 
-.yr_td{		      /*Defining column widths in the produced result table*/
-	width:7%%;
+/*.yr_td{*/		      /*Defining column widths in the produced result table*/
+	/*width:7%;
 	min-width:20px;
+}*/
+.dept_num_td{
+	width:14%;
+	min-width:70px;
 }
-.dept_td{
-	width:7%;
-	min-width:30px;
-}
-.num_td{
+/*.num_td{
 	width:9%;
 	min-width:40px;
-}
+}*/
 .prof_td{
-	width:15%;
+	width:13%;
 	min-width:80px;
 }
 .day_td{
@@ -436,21 +444,27 @@ h5 {		      /*Ex:MUS 110*/
 	min-width:60px;
 }
 .syl_td{
-	width:15%;
+	width:12%;
 	min-width:70px;
 }
 .dist_td{
 	width:7%;
 	min-width:40px;
 }
+.title_td{
+	width:17%;
+}
 
 /*Experimentation with pagination
+
 ul.pagination {
     display: inline-block;
     padding: 0;
     margin: 0;
 }
+
 ul.pagination li {display: inline;}
+
 ul.pagination li a {
     color: black;
     float: left;
@@ -461,10 +475,13 @@ ul.pagination li a.active {
     font-weight:bold;
     font-size: 18px;
 }
+
+
 ul.pagination li a:hover:not(.active) {
   font-weight:bold;
   font-size: 18px;
 }
+
 #page_two {
   display:none;
 }
