@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>	
-<link rel="stylesheet" type="text/css" href="search.css">
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='search.css') }}">
 <script src="https://code.jquery.com/jquery-2.1.4.js"></script>
 <script src="list.js"></script>
 <script>
@@ -9,9 +9,7 @@
 	var options = {
   		valueNames: [ 'name', 'number', 'professor' ]
 	}; 
-
 var userList = new List('users', options);
-
 $(document).ready(function(){
   $("#hideme").click(function(){
     $(".novisit").toggle();
@@ -392,121 +390,23 @@ $(document).ready(function(){
      </div>
 	</div>
 	
-  <ul class="result_list">
-    <li class="novisit" id="page_1">
-	    <table>
-		    <tr>
-			   <td class="yr_td">Spring 2016</td>
-			   <td class="dept_td">SPA</td>
-      			<td class="num_td">322</td>
-      			<td class="prof_td">Willis A</td>
-      			<td class="day_td">T R</td>
-      			<td class="time_td">1215-0130</td>
-      			<td class="bldg_td">CHAM 3198</td>
-      			<td class="dist_td">LTRQ</td>
-      			<td class="visit_td">Cannot Visit</td>
-      			<td class="syl_td"><a href="">Download Syllabus</a>
-      		</tr>
-      	</table>
-    </li>
-    <li id="page_1">
-	    <table>
-		    <tr>
-			   <td class="yr_td">Spring 2016</td>
-			   <td class="dept_td">MAT</td>
-      			<td class="num_td">315A</td>
-      			<td class="prof_td">Neidinger R</td>
-      			<td class="day_td">T R</td>
-      			<td class="time_td">1215-0130</td>
-      			<td class="bldg_td">LIB B110</td>
-      			<td class="dist_td">MQRQ</td>
-      			<td class="visit_td">Can Visit</td>
-      			<td class="syl_td"><a href="">Download Syllabus</a>
-      		</tr>
-      	</table>
-    </li>
-    <li class="novisit" id="page_1">
-      <table>
-		    <tr>
-			   <td class="yr_td">Spring 2016</td>
-			   <td class="dept_td">HUM</td>
-      			<td class="num_td">251LE</td>
-      			<td class="prof_td">Lerner N</td>
-      			<td class="day_td">M W F</td>
-      			<td class="time_td">1130-1230</td>
-      			<td class="bldg_td">SLOAN B011</td>
-      			<td class="dist_td">HTRQ LBRQ LTRQ PRRQ</td>
-      			<td class="visit_td">Cannot Visit</td>
-      			<td class="syl_td"><a href="">Download Syllabus</a>
-      		</tr>
-      	</table>
-    </li>
-    <li id="page_1">
-      <table>
-		    <tr>
-			   <td class="yr_td">Spring 2016</td>
-			   <td class="dept_td">ANT</td>
-      			<td class="num_td">371</td>
-      			<td class="prof_td">Bowles L</td>
-      			<td class="day_td">W</td>
-      			<td class="time_td">0130-0420</td>
-      			<td class="bldg_td">CHAM 2198</td>
-      			<td class="dist_td">None</td>
-      			<td class="visit_td">Can Visit</td>
-      			<td class="syl_td"><a href="">Download Syllabus</a>
-      		</tr>
-      	</table>
-    </li>
-    <li id="page_1">
-      <table>
-		    <tr>
-			   <td class="yr_td">Spring 2016</td>
-			   <td class="dept_td">MAT</td>
-      			<td class="num_td">315A</td>
-      			<td class="prof_td">Neidinger R</td>
-      			<td class="day_td">T R</td>
-      			<td class="time_td">1215-0130</td>
-      			<td class="bldg_td">LIB B110</td>
-      			<td class="dist_td">MQRQ</td>
-      			<td class="visit_td">Can Visit</td>
-      			<td class="syl_td"><a href="">Download Syllabus</a>
-      		</tr>
-      	</table>
-    </li>
-    <li id="page_1">
-      <table>
-		    <tr>
-			   <td class="yr_td">Spring 2016</td>
-			   <td class="dept_td">MAT</td>
-      			<td class="num_td">315A</td>
-      			<td class="prof_td">Neidinger R</td>
-      			<td class="day_td">T R</td>
-      			<td class="time_td">1215-0130</td>
-      			<td class="bldg_td">LIB B110</td>
-      			<td class="dist_td">MQRQ</td>
-      			<td class="visit_td">Can Visit</td>
-      			<td class="syl_td"><a href="">Download Syllabus</a>
-      		</tr>
-      	</table>
-    </li>
-    <li id="page_two">
-      <table>
-		    <tr>
-			   <td class="yr_td">Spring 2016</td>
-			   <td class="dept_td">MAT</td>
-      			<td class="num_td">315A</td>
-      			<td class="prof_td">Neidinger R</td>
-      			<td class="day_td">T R</td>
-      			<td class="time_td">1215-0130</td>
-      			<td class="bldg_td">LIB B110</td>
-      			<td class="dist_td">MQRQ</td>
-      			<td class="visit_td">Can Visit</td>
-      			<td class="syl_td"><a href="">Download Syllabus</a>
-      		</tr>
-      	</table>
-    </li>
+  <div class="result_list">
+	  
+  	<table border="1" style="width:100%">
+	{% for i in search_results %}
+		<tr>
+			<td>{{i[0]}}</td>
+			<td>{{i[1]}}</td>
+			<td>{{i[2]}}</td>
+			<td>{{i[3]}}</td>
+			<td>{{i[4]}}</td>
+			<td>{{i[5]}}</td>
+			<td>{{i[6]}}</td>
+		</tr>	
+	{% endfor %}
+	</table>	
 
-      </ul>
+  </div>
 <!--
   <ul class="pagination">
   <li><a href="#">«</a></li>
