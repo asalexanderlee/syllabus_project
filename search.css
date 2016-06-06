@@ -12,6 +12,10 @@ body {
 	top:8px;	
 }
 
+input[type="checkbox"]{
+	cursor:pointer;
+}
+
 
 /*- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
 
