@@ -12,8 +12,19 @@ body {
 	top:8px;	
 }
 
-input[type="checkbox"]{
-	cursor:pointer;
+#prof_search{
+   margin-left:30%;
+   display:none;
+   margin-top:2px;
+   -moz-appearance:none;
+   -webkit-appearance:none;
+   border: 1px solid #999;
+    border-radius: 2px;
+    padding:5px;
+}
+#prof_search:focus{
+   outline:2px solid #cce6ff;
+   background-color: #cccccc;	
 }
 
 
@@ -93,6 +104,7 @@ input[type="checkbox"]{
    height:145px;
    overflow:scroll;	
 }
+
 .prof_li {
   display:block;	  
   padding:3px;
@@ -337,6 +349,8 @@ button:hover{
   float: right;
   padding: 1%;
   margin-bottom:10%;
+  height:800px;
+  overflow:scroll;
 }
 
 h4 {		      /*Search by subject and course number*/
