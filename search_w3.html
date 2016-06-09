@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+<header>	
+<link rel="stylesheet" type="text/css" href="search.css">
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="{{
+  url_for('static', filename='jquery.js') }}">\x3C/script>')</script>
+<script src="search_flask.js"></script>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Search Page</title>
+</header>
+<body>
+  
+  <a href="syllabi_manager.php" id="login">Are you an administrator? Login Here</a>
+  
+  <nav class="w3-sidenav w3-collapse w3-card-2 w3-animate-left" id="filter">
+  <form action={{url_for("process_form")}} method="post">
+  <input type="checkbox" name="visitable" id="hideme" >Classes that welcome visitors<br> 
+	<p id="year" class="filter_heads">Semester<img src="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-arrow-down-b-128.png" class="down_arrow" id="down_arrow_year"><img src="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-arrow-right-b-128.png" class="side_arrow" id="side_arrow_year"></p>
+    <select name="years" id="year_dropdwn">
+  		<option value="201602" idclass="year_li">Spring 2016</option>
+  		<option value="201601" id="sem_check" class="year_li">Fall 2016</option>
+  		<option value="201502" id="sem_check" class="year_li" selected>Spring 2015</option>
+  		<option value="201501" id="sem_check" class="year_li">Fall 2015</option>
+  		<option value="201402" id="sem_check" class="year_li">Spring 2014</option>
+  		<option value="201401" id="sem_check" class="year_li">Fall 2014</option>
+  		<option value="201302" id="sem_check" class="year_li">Spring 2013</option>
+  		<option value="201301" id="sem_check" class="year_li">Fall 2013</option>
+  		<option value="201202" id="sem_check" class="year_li">Spring 2012</option>
+  		<option value="201201" id="sem_check" class="year_li">Fall 2012</option>
+  		<option value="201102" id="sem_check" class="year_li">Spring 2011</option>
+  		<option value="201101" id="sem_check" class="year_li">Fall 2011</option>
+  		<option value="201002" id="sem_check" class="year_li">Spring 2010</option>
+  		<option value="201001" id="sem_check" class="year_li">Fall 2010</option>
+  		<option value="200902" id="sem_check" class="year_li">Spring 2009</option>
+  		<option value="200901" id="sem_check" class="year_li">Fall 2009</option>
+	</select>
+
+    <div><p id="prof" class="filter_heads" onclick="generateProfs()">Professors<img src="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-arrow-down-b-128.png" class="down_arrow" id="down_arrow_prof"><img src="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-arrow-right-b-128.png" class="side_arrow" id="side_arrow_prof"></p>
+	<input type="search" name="prof_search" results=5 id="prof_search" placeholder="Search for a professor"/>
+	</div>
+    <ul id="prof_list">	
+	    {% for i in uploads %}
+    	<li class="prof_li"><input type="checkbox" class="test" id="prof_check" value={{i}}>{{i}}</li>
+    	{% endfor %}
+    </ul>
+    
+    <p id="dept" class="filter_heads" onclick="generateDepts()">Department<img src="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-arrow-down-b-128.png" class="down_arrow" id="down_arrow_dept"><img src="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-arrow-right-b-128.png" class="side_arrow" id="side_arrow_dept"></p>
+	    <table id="dept_list">
+		    <tr>
+			    <td>    
+    				<ul id="first_col"></ul>
+    			</td>
+    			<td>    
+    				<ul id="sec_col"></ul>
+    			</td>
+    			<td>    
+    				<ul id="third_col"></ul>
+    			</td>
+    		</tr>
+    	</table>
+    
+    <p id="day" class="filter_heads">Day<img src="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-arrow-down-b-128.png" class="down_arrow" id="down_arrow_day"><img src="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-arrow-right-b-128.png" class="side_arrow" id="side_arrow_day"></p>
+    <div id="day_list">
+      <p class="day_li"><input type="checkbox" id="day_check" class="test" value="mwf">MWF</p>
+      <p class="day_li"><input type="checkbox" id="day_check" class="test" value="tr">TR</p>
+    </div>
+    
+    <p id="time" class="filter_heads">Time<img src="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-arrow-down-b-128.png" class="down_arrow" id="down_arrow_time"><img src="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-arrow-right-b-128.png" class="side_arrow" id="side_arrow_time"></p>
+	<div id="morn_aft">
+	<input type="checkbox" id="morn_classes">Morning
+	<input type="checkbox" id="aft_classes">Afternoon
+	</div>
+	<table id="time_list">
+		<tr>
+			<td>
+    		<ul id="time_list_MWF">
+      			<li class="time_li"><input type="checkbox" id="time_check" class="morn test" value="0830">8:30am</li>
+      			<li class="time_li"><input type="checkbox" id="time_check" class="morn test" value="0930">9:30am</li>
+      			<li class="time_li"><input type="checkbox" id="time_check" class="morn test" value="1030">10:30am</li>
+      			<li class="time_li"><input type="checkbox" id="time_check" class="morn test" value="1130">11:30am</li>
+	  			<li class="time_li"><input type="checkbox" id="time_check" class="aft test" value="1230">12:30pm</li>
+				<li class="time_li"><input type="checkbox" id="time_check" class="aft test" value="0130">1:30pm</li>
+				<li class="time_li"><input type="checkbox" id="time_check" class="aft test" value="0230">2:30pm</li>
+				<li class="time_li"><input type="checkbox" id="time_check" class="aft test" value="0330">3:30pm</li>
+    		</ul>
+    		</td>
+	    	<td>
+    		<ul id="time_list_TR">
+	 			<li class="time_li"><input type="checkbox" id="time_check" class="morn test" value="0815">8:15am</li>
+      			<li class="time_li"><input type="checkbox" id="time_check" class="morn test" value="0940">9:40am</li>
+      			<li class="time_li"><input type="checkbox" id="time_check" class="aft test" value="1215">12:15pm</li>
+      			<li class="time_li"><input type="checkbox" id="time_check" class="aft test" value="0140">1:40pm</li>
+	  			<li class="time_li"><input type="checkbox" id="time_check" class="aft test" value="0315">3:15pm</li>
+				</ul>
+			</td>
+		</tr>
+	</table>
+    
+    <p id="dist_req" class="filter_heads">Distribution Requirements<img src="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-arrow-down-b-128.png" class="down_arrow" id="down_arrow_dist_req"><img src="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-arrow-right-b-128.png" class="side_arrow" id="side_arrow_dist_req"></p>
+    <table id="dist_req_list">
+	    <td>
+		    <input type="checkbox" value="HTRQ" id="dist_req_check" class="dist_req_li test"><a href="" title="Historical Thought" class="dist_req_text">HTRQ</a><br>
+			<input type="checkbox" value="LBRQ" id="dist_req_check" class="dist_req_li test"><a href="" title="Liberal Studies" class="dist_req_text">LBRQ</a><br>
+			<input type="checkbox" value="LTRQ" id="dist_req_check" class="dist_req_li test"><a href="" title="Literary Studies, Creative Writing, and Rhetoric" class="dist_req_text">LTRQ</a><br>
+			<input type="checkbox" value="MQRQ" id="dist_req_check" class="dist_req_li test"><a href="" title="Mathematical and Quantitative Thought" class="dist_req_text">MQRQ</a><br>
+		</td>
+		<td>
+		    <input type="checkbox" value="NSRQ" id="dist_req_check" class="dist_req_li test"><a href="" title="Natural Science" class="dist_req_text">NSRQ</a><br>
+			<input type="checkbox" value="PRRQ" id="dist_req_check" class="dist_req_li test"><a href="" title="Philosophical and Religious Perspectives" class="dist_req_text">PRRQ</a><br>
+			<input type="checkbox" value="SSRQ" id="dist_req_check" class="dist_req_li test"><a href="" title="Social-Scientific Thought" class="dist_req_text">SSRQ</a><br>
+			<input type="checkbox" value="VPRQ" id="dist_req_check" class="dist_req_li test"><a href="" title="Visual and Performing Arts" class="dist_req_text">VPRQ</a><br>
+		</td>
+	</table>
+    <p id="class_size" class="filter_heads">Class Size<img src="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-arrow-down-b-128.png" class="down_arrow" id="down_arrow_class_size"><img src="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-arrow-right-b-128.png" class="side_arrow" id="side_arrow_class_size"></p>
+    <ul id="class_size_list">
+      <li class="class_size_li"><input type="checkbox">0 - 6</li>
+      <li class="class_size_li"><input type="checkbox">6 - 12</li>
+      <li class="class_size_li"><input type="checkbox">12 - 20</li>
+      <li class="class_size_li"><input type="checkbox">20 +</li>
+    </ul>
+    <input type="text" id="dep" name="dep" value="" hidden>
+    <input type="text" id="period" name="period" value="" hidden>
+    <input type="text" id="prof_form" name="prof_form" value="" hidden>
+    <input type="text" id="days" name="days" value="" hidden>
+    <input type="text" id="times" name="times" value="" hidden>
+    <input type="text" id="distri" name="distri" value="" hidden>
+    <input type="submit" onclick="createQueryStr()" value="Apply">
+	</form>
+  </div>
+  </div>
+  
+  <div id="specific_search">
+	 <h2 id="syl_search_page_head">Syllabi Search Page</h2>
+	  <div id="descript">
+    <h4>Search by keyword:<br><span>Do not include any numbers or symbols</span></h4>
+    </div>
+  		
+     <div id="search_box">
+	    <form action={{url_for("search_form")}} method="post">
+  		<input class="search" id="gen_search" name="gen_search" placeholder="Search" autofocus/>
+	  	<input type="submit" id="gen_search_btn" name="gen_search_btn" hidden>
+  		
+  		
+  		<div class="dropdown">
+  			<button class="dropbtn">Sort By:</button>
+  			<div class="dropdown-content">
+				<p class="sort" data-sort="professor">
+    			A to Z by Professor
+  				</p>
+  				<p class="sort" data-sort="name">
+    			A to Z by Department
+  				</p>
+    			<p class="sort" data-sort="number">
+    			By Class Number
+  				</p>
+  			</div>
+		</div>
+		</form>
+	</div>
+	
+  <ul class="result_list">	
+	{% for i in search_results %} 
+	<li>
+  	<table>
+		<tr>
+			<td class="dept_num_td">{{i[0]}}</td>
+			<td class="title_td">{{i[1]}}</td>
+			<td class="prof_td">{{i[2]}}</td>
+			<td class="time_td">{{i[3]}}</td>
+			<td class="day_td">{{i[4]}}</td>
+			<td class="dist_td">{{i[5]}}</td>
+			<td class="bldg_td">{{i[6]}}</td>
+			<td class="visit_td">Visit:<br>Yes</td>
+			<td class="syl_td"><a href="">Download Syllabus</a></td>
+		</tr>	
+	
+	</table>	
+	</li>
+	{% endfor %}
+
+	{% if total==0 %}
+	<p style="text-align:center">Sorry, no results. Please try again.</p>
+	{% endif %}
+  </ul>
+  
+	
+
+
+<!--
+  <ul class="pagination">
+  <li><a href="#">«</a></li>
+  <li id="1"><a class="active" href="#" onclick="change_page()">1</a></li>
+  <li id="2" class="page"><a href="#">2</a></li>
+  <li id="3" class="page"><a href="#">3</a></li>
+  <li id="4" class="page"><a href="#">4</a></li>
+  <li id="5" class="page"><a href="#">5</a></li>
+  <li id="6" class="page"><a href="#">6</a></li>
+  <li id="7" class="page"><a href="#">7</a></li>
+  <li id="8" class="page"><a href="#">8</a></li>
+  <li><a href="#">»</a></li>
+</ul>
+-->
+
+
+</div>
+</body>
+</html>

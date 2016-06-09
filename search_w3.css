@@ -1,0 +1,457 @@
+body {
+  background-color: #660000;
+  padding:40px;
+  min-width:1200px;
+}
+
+#login{
+	font-size:14px;
+	color:#cce6ff;
+	position:absolute;
+	right:50px;
+	top:8px;	
+}
+
+#prof_search{
+   margin-left:30%;
+   display:none;
+   margin-top:2px;
+   -moz-appearance:none;
+   -webkit-appearance:none;
+   border: 1px solid #999;
+    border-radius: 2px;
+    padding:5px;
+}
+#prof_search:focus{
+   outline:2px solid #cce6ff;
+   background-color: #cccccc;	
+}
+
+
+/*- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
+
+
+/*filter search box*/
+#filter {  
+    background-color:#eeeeee;
+    height:100%;
+    width:25%;
+    float:left;
+    padding:10px;
+}
+
+/*Semester Filter*/
+
+.filter_heads{
+	background-color: white;
+  color: black;
+  padding: 5px;
+  border: 1.5px solid #bfbfbf;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 8px 20px 0 rgba(0, 0, 0, 0.19);
+  text-align: center;
+  margin:5px;		
+}
+
+#year:hover {
+  cursor: pointer;
+  background-color: lightgray;
+}
+#year_dropdwn{
+	display:block;	
+}
+#year_dropdwn, select {		
+     border: 0;
+     width: 100px;
+     margin:8px;
+     font-size:12px;
+     font-family:"cambria";
+	margin-left: 35%;
+	background-color: #d9d9d9;
+     color: #1455a2;
+}
+#year_dropdwn:hover{
+	cursor:pointer;
+	background-color:#cccccc;
+	outline:2px solid #cce6ff;	
+}
+#year_dropdwn:focus{
+	cursor:pointer;
+	background-color:#cccccc;
+	outline:none;	
+}
+.year_li{
+	padding:5px;
+	background-color:#d9d9d9;	
+	cursor:pointer;
+}
+.year_li:hover{
+	background-color:#b3ccff;
+}
+
+
+/*Professor Filter*/
+#prof:hover {
+  cursor: pointer;
+  background-color: lightgray;
+}
+#prof_list{
+   display:none;		      /*Hidden*/
+   height:145px;
+   overflow:scroll;	
+}
+
+.prof_li {
+  display:block;	  
+  padding:3px;
+}
+.prof_li:hover{
+	outline: 2px solid #cce6ff;
+	cursor:pointer;	
+	background-color:#d9d9d9;	
+}
+
+
+/*Department Filter*/
+#dept:hover {
+  cursor: pointer;
+  background-color: lightgray;
+}
+#dept_list{
+	display:none;		      /*Hidden*/
+}
+#dept_list td {
+	width:95px;	
+	font-size:15px;
+}
+.dept_li {
+  display:block;
+}
+.dept_text{ /*Removes link styling*/
+  text-decoration:none;
+  color:black;
+  cursor:help;	
+}
+
+
+/*Day Filter*/
+#day:hover {
+  cursor: pointer;
+  background-color: lightgray;
+}
+#day_list{
+	display:block;		    /*Visible*/
+}
+.day_li {
+  display:inline;
+  margin:3%;
+  margin-right:20%;
+  margin-left:12%;
+}
+
+
+/*Time Filter*/
+#time:hover {
+  cursor: pointer;
+  background-color: lightgray;
+}
+#time_list{
+	display:block;		/*Visible*/	
+}
+
+#time_list_TR li{
+	padding:5px;	
+}
+.time_li {
+  display:block;
+}
+
+#morn_classes{
+	margin-left:12%;	
+}
+
+#aft_classes{
+	margin-left:20%;	
+}
+
+#morn_aft{
+	margin-top:10px;	
+}
+
+
+/*Distribution Requirement Filter*/
+#dist_req:hover {
+  cursor: pointer;
+  background-color: lightgray;
+}
+#dist_req_list{
+   display:block;				/*Visible*/	
+   margin-left:15%;
+}
+#dist_req_list td {
+  padding:5px;
+  width:40%;
+  margin-left:15%;
+}
+.dist_req_text {
+  padding:5px;
+  font-size:15px;
+  text-decoration:none;
+  color:black;
+  cursor:help;
+}
+
+
+/*Class Size Filter*/
+
+#class_size:hover {
+  cursor: pointer;
+  background-color: lightgray;
+}
+
+.class_size_li {
+  display:block;
+}
+
+#class_size_list{				 /*hidden*/
+	display:none;	
+}
+
+.down_arrow {
+  float: right;
+  margin: 1px;
+  width: 15px;
+  height: 15px;
+}
+#down_arrow_prof, #down_arrow_class_size, 
+#down_arrow_dept{				/*The hidden fields*/
+	display: none;
+}
+
+.side_arrow {
+  float: right;
+  margin: 1px;
+  width: 15px;
+  height: 15px;
+}
+#side_arrow_day, #side_arrow_time, 
+#side_arrow_year, #side_arrow_dist_req{		/*The showing fields*/
+	display:none;	
+}
+
+/*Sort dropdown*/
+.dropbtn {
+    background-color: #808080;
+    color: white;
+    padding: 10px;
+    font-size: 14px;
+    border: none;
+    width:170px;
+    cursor: pointer;
+    margin-left:10px;
+}
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    margin-left:10px;
+}
+.dropdown-content p {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    cursor:pointer;
+}
+.dropdown-content p:hover {background-color: #f1f1f1}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+.dropdown:hover .dropbtn {
+    background-color: #595959;
+}
+
+input[type="submit"]{			/*Apply button*/
+	padding:7px;
+	margin:7px;
+	margin-left:70%;
+	background-color:#cce6ff;	
+}
+input[type="submit"]:hover{
+	background-color:#b3daff;	
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 8px 20px 0 rgba(0, 0, 0, 0.19);
+	transition:0.5s;
+	cursor:pointer;
+}
+
+
+
+/*- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
+
+
+
+/*Div where you display course findings*/
+#specific_search {    
+  background-color: white;
+  width: 70%;
+  min-width:750px;
+  float: right;
+  padding: 1%;
+  padding-bottom:0px;
+  margin-bottom:0%;
+  height:720px;
+}
+
+#syl_search_page_head{
+	text-align:center;
+	/*text-shadow: 0.5px 0.5px 1.5px #80c1ff;*/	
+}
+
+h4 {		      /*Search by subject and course number*/
+  color: black;
+  font-family: cambria;
+}
+
+h4 span {		      /*Ex:MUS 110*/
+  color: gray;
+  font-size:14px;
+  font-weight:normal;
+}
+
+#descript{
+	display:inline-block;
+ 	margin-left:10%;	
+}
+
+.search	{	      /*Search field*/
+  display:inline-block;
+  border:solid 1px #ccc;
+  border-radius:2px;
+  padding:7px 14px;
+  margin-bottom:10px
+}
+
+.search:hover{
+  cursor:auto;
+}
+
+.search:focus{
+	outline:2px solid #cce6ff;
+	background-color: #cccccc;	
+}
+
+#search_box {	      /*Contains both search field and sort dropdown*/
+  display:inline-block;
+  margin-left:5%;
+  margin-top:10px;
+}
+
+.result_list {
+  font-family:cambria;
+  font-size:13px;
+  padding:20px;
+  height:500px;
+  overflow:scroll;
+}
+
+.result_list table{
+	border-collapse:collapse;	
+}
+
+.result_list li {
+  display:block;
+  text-align: center;
+  background-color: lightgray;
+  box-shadow: inset 0 1px 0 #fff;
+
+}
+
+.result_list li:hover{
+	outline: 2px solid #cce6ff;
+	cursor:pointer;	
+	background-color:#cccccc;
+}
+
+.result_list td{
+	padding:10px;
+	border:1px solid white;	
+}
+
+.result_list td:nth-child(even){
+	background-color:#e6e6e6;
+}
+
+.title_td{		      /*Defining column widths in the produced result table*/
+	width:27%;
+	min-width:180px;
+}
+.dept_num_td{
+	width:5%;
+	min-width:30px;
+}
+.prof_td{
+	width:16%;
+	min-width:110px;
+}
+.day_td{
+	width:7%;
+	min-width:40px;
+}
+.time_td{
+	width:8%;
+	min-width:50px;
+}
+.bldg_td{
+	width:9%;
+	min-width:50px;
+}
+.visit_td{
+	width:6%;
+	min-width:30px;
+}
+.syl_td{
+	width:15%;
+	min-width:70px;
+}
+.dist_td{
+	width:7%;
+	min-width:40px;
+}
+
+/*Experimentation with pagination
+
+ul.pagination {
+    display: inline-block;
+    padding: 0;
+    margin: 0;
+}
+
+ul.pagination li {display: inline;}
+
+ul.pagination li a {
+    color: black;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+}
+ul.pagination li a.active {
+    font-weight:bold;
+    font-size: 18px;
+}
+
+
+ul.pagination li a:hover:not(.active) {
+  font-weight:bold;
+  font-size: 18px;
+}
+
+#page_two {
+  display:none;
+}
+*/
