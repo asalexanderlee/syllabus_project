@@ -1,157 +1,95 @@
 <!DOCTYPE>
 <html>
 	<header>
-		<style>
-			
-			body{
-				background-color:#660000;	
-			}
-			
-			#main_body{
-				background-color:#e6e6e6;
-				padding:20px;
-				margin:30px;
-				margin-left:45px;
-				margin-right:45px;
-				box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 8px 20px 0 rgba(0, 0, 0, 0.19);	
-				padding-bottom:50px;
-			}
-			
-			#login_id, #logout{
-				font-size:14px;	
-			}
-			
-			#login_info{
-				background-color:white;
-				border:1px solid gray;
-				width:10%;	
-				text-align:center;
-				float:right;
-				padding:5px;
-			}
-			
-			#quick_info{
-				background-color:#b3b3b3;
-				border:1px solid white;
-				width:20%;	
-				padding:10px;
-				float:left;
-			}
-			
-			.answers{
-				color:#6666ff;
-				text-align:center;
-				font-size:27px;
-				margin:3px;	
-			}
-			
-			.answers:hover{
-				cursor:pointer;
-				color:#3333ff;
-				transition:0.5s;	
-				font-size:32px;
-			}
-			
-			p{
-				text-align:center;	
-			}
-			
-			#prof_search{
-				overflow:scroll;
-				height:500px;
-				width:30%;
-				margin-left:10%;
-				float:left;
-			}
-			
-			.prof{
-				border-bottom:1px solid #e6e6e6;
-				width:100%;	
-				text-align:center;
-				padding:8px;
-				background-color:white;
-				margin:0px;
-			}
-			
-			.prof:hover, .prof:focus{
-				background-color:#ffb3b3;
-				cursor:pointer;	
-			}
-			
-			#syl_status_box{
-				margin-left:62%;
-				background-color:white;
-				height:480px;
-				width:30%;	
-				visibility:hidden;
-				padding:10px;
-			}
-			
-			td, th {
-				text-align:center;
-				padding:10px;
-			}
-			
-			tr:nth-child(even){
-				background-color:#bfbfbf;
-			}
-			
-			tr:nth-child(odd){
-				background-color:#d9d9d9;	
-			}
-			
-			.true{
-				color:#00cc66;	
-			}
-			
-			.false{
-				color:#cc0000;	
-			}
-			
-		</style>
+		<link rel="stylesheet" type="text/css" href={{url_for('static',filename='syl_manager.css')}}>
+		<script type="text/javascript" src={{url_for('static', filename='syl_manager.js')}}></script>
+		<script src="https://code.jquery.com/jquery-2.1.4.js"></script>
+
 	</header>
 	<body>
-		
-		<script>
-			function shareInfo(){
-				document.getElementById("syl_status_box").style.visibility = "visible";	
-			}
-		</script>
-		
-		
+	
 		<div id="main_body">
 			<div id="login_info">
-			<p id="login_id">You are logged in as: </p><br>
+			<p id="login_id">You are logged in as: Ashley Alexander-Lee</p>
 			<a href="search.html" id="logout">Logout</a>
 			</div>
 			
-			<h2 style="text-align:center">Syllabi Manager</h2><br><br><br><br><br><br><br>
-			<div id="quick_info"><br><br>
-				<p>No. Syllabi Outstanding:</p>
-				<p class="answers">0</p><br><br><br>
-				<p>No. Professors Missing Syllabi:</p>
-				<p class="answers">0</p><br><br><br>	
+			<h2 style="text-align:center;padding-top:40px;padding-bottom:50px;">Syllabi Manager</h2>
+			<div id="quick_info">
+				<table>
+					<tr>
+						<td>No. Syllabi Outstanding:<br><p class="answers"><span class="first">0</span><span class="second">See All</span></p></td>
+						<td>No. Professors Missing Syllabi:<br><p class="answers"><span class="first">0</span><span class="second">See All</span></p></td>
+						<td>% Syllabi Outstanding:<br><p class="answers"><span class="first">0%</span><span class="second">See All</span></p></td>
+						<td>No. Departments Missing Syllabi:<br><p class="answers"><span class="first">0</span><span class="second">See All</span></p></td>
+					</tr>
+				</table>		
 			</div>
-	
+				<div id="dept_search">
+					<p class="dept" onclick="shareProfInfo()">AFR</p>
+					<p class="dept" onclick="shareProfInfo()">ANT</p>
+					<p class="dept" onclick="shareProfInfo()">ARB</p>
+					<p class="dept" onclick="shareProfInfo()">ART</p>
+					<p class="dept" onclick="shareProfInfo()">BIO</p>
+					<p class="dept" onclick="shareProfInfo()">CHE</p>
+					<p class="dept" onclick="shareProfInfo()">CHI</p>
+					<p class="dept" onclick="shareProfInfo()">CIS</p>
+					<p class="dept" onclick="shareProfInfo()">CLA</p>
+					<p class="dept" onclick="shareProfInfo()">COM</p>
+					<p class="dept" onclick="shareProfInfo()">CSC</p>
+					<p class="dept" onclick="shareProfInfo()">DAN</p>
+					<p class="dept" onclick="shareProfInfo()">DIG</p>
+					<p class="dept" onclick="shareProfInfo()">ECO</p>
+					<p class="dept" onclick="shareProfInfo()">ENG</p>
+					<p class="dept" onclick="shareProfInfo()">ENV</p>
+					<p class="dept" onclick="shareProfInfo()">ETH</p>
+					<p class="dept" onclick="shareProfInfo()">FMS</p>
+					<p class="dept" onclick="shareProfInfo()">FRE</p>
+					<p class="dept" onclick="shareProfInfo()">GER</p>
+					<p class="dept" onclick="shareProfInfo()">GRE</p>
+					<p class="dept" onclick="shareProfInfo()">GSS</p>
+					<p class="dept" onclick="shareProfInfo()">HIS</p>
+					<p class="dept" onclick="shareProfInfo()">HUM</p>
+					<p class="dept" onclick="shareProfInfo()">LAS</p>
+					<p class="dept" onclick="shareProfInfo()">LAT</p>
+					<p class="dept" onclick="shareProfInfo()">LIT</p>
+					<p class="dept" onclick="shareProfInfo()">MAT</p>
+					<p class="dept" onclick="shareProfInfo()">MHU</p>
+					<p class="dept" onclick="shareProfInfo()">MIL</p>
+					<p class="dept" onclick="shareProfInfo()">MUS</p>
+					<p class="dept" onclick="shareProfInfo()">PED</p>
+					<p class="dept" onclick="shareProfInfo()">PHI</p>
+					<p class="dept" onclick="shareProfInfo()">PHY</p>
+					<p class="dept" onclick="shareProfInfo()">POL</p>
+					<p class="dept" onclick="shareProfInfo()">PSY</p>
+					<p class="dept" onclick="shareProfInfo()">REL</p>
+					<p class="dept" onclick="shareProfInfo()">RUS</p>
+					<p class="dept" onclick="shareProfInfo()">SIL</p>
+					<p class="dept" onclick="shareProfInfo()">SOC</p>
+					<p class="dept" onclick="shareProfInfo()">SOU</p>
+					<p class="dept" onclick="shareProfInfo()">SPA</p>
+					<p class="dept" onclick="shareProfInfo()">THE</p>
+					<p class="dept" onclick="shareProfInfo()">WRI</p>				
+				</div>
 				<div id="prof_search">
-					<p class="prof" onclick="shareInfo()">Shareen Campbell</p>
-					<p class="prof" onclick="shareInfo()">Laurie Heyer</p>
-					<p class="prof" onclick="shareInfo()">Mauro Botelho</p>
-					<p class="prof" onclick="shareInfo()">Bill Lawing</p>
-					<p class="prof" onclick="shareInfo()">Ashley Alexander</p>
-					<p class="prof" onclick="shareInfo()">Hermon Mulat</p>		
-					<p class="prof" onclick="shareInfo()">Katy Williams</p>
-					<p class="prof" onclick="shareInfo()">Katy Williams</p>
-					<p class="prof" onclick="shareInfo()">Katy Williams</p>
-					<p class="prof" onclick="shareInfo()">Katy Williams</p>
-					<p class="prof" onclick="shareInfo()">Katy Williams</p>
-					<p class="prof" onclick="shareInfo()">Katy Williams</p>
-					<p class="prof" onclick="shareInfo()">Katy Williams</p>
-					<p class="prof" onclick="shareInfo()">Katy Williams</p>
-					<p class="prof" onclick="shareInfo()">Katy Williams</p>
-					<p class="prof" onclick="shareInfo()">Katy Williams</p>
-					<p class="prof" onclick="shareInfo()">Katy Williams</p>
-					<p class="prof" onclick="shareInfo()">Katy Williams</p>
+					<p class="prof" onclick="shareSylInfo()">Shireen Campbell</p>
+					<p class="prof" onclick="shareSylInfo()">Laurie Heyer</p>
+					<p class="prof" onclick="shareSylInfo()">Mauro Botelho</p>
+					<p class="prof" onclick="shareSylInfo()">Bill Lawing</p>
+					<p class="prof" onclick="shareSylInfo()">Ashley Alexander</p>
+					<p class="prof" onclick="shareSylInfo()">Hermon Mulat</p>		
+					<p class="prof" onclick="shareSylInfo()">Katy Williams</p>
+					<p class="prof" onclick="shareSylInfo()">Katy Williams</p>
+					<p class="prof" onclick="shareSylInfo()">Katy Williams</p>
+					<p class="prof" onclick="shareSylInfo()">Katy Williams</p>
+					<p class="prof" onclick="shareSylInfo()">Katy Williams</p>
+					<p class="prof" onclick="shareSylInfo()">Katy Williams</p>
+					<p class="prof" onclick="shareSylInfo()">Katy Williams</p>
+					<p class="prof" onclick="shareSylInfo()">Katy Williams</p>
+					<p class="prof" onclick="shareSylInfo()">Katy Williams</p>
+					<p class="prof" onclick="shareSylInfo()">Katy Williams</p>
+					<p class="prof" onclick="shareSylInfo()">Katy Williams</p>
+					<p class="prof" onclick="shareSylInfo()">Katy Williams</p>
 				</div>
 				<div id="syl_status_box">
 					<table>
@@ -160,33 +98,46 @@
 							<th>No.</th>
 							<th>Title</th>
 							<th>Syllabus Available?</th>
+							<th>Learning Outcomes?</th>
 						</tr>
 						<tr>
 							<td>MAT</td>
 							<td>112</td>
 							<td>Calculus I</td>
-							<td class="false">False</td>
+							<td><p class="false">False</p><p class="syl_missing" onclick="sendMissingSyl()">Send email now</p></td>
+							<td class="false">False<p class="syl_missing" onclick="sendMissingSyl()">Send email now</p></td>
 						</tr>
 						<tr>
 							<td>MAT</td>
 							<td>270</td>
 							<td>Discrete Math</td>
 							<td class="true">True</td>
+							<td class="false">False<p class="syl_missing" onclick="sendMissingSyl()">Send email now</p></td>
 						</tr>
 						<tr>
 							<td>CSC</td>
 							<td>121</td>
 							<td>Programming and Problem Solving</td>
 							<td class="true">True</td>
+							<td class="false">False<p class="syl_missing" onclick="sendMissingSyl()">Send email now</p></td>
 						</tr>
 						<tr>
 							<td>MAT</td>
 							<td>400</td>
 							<td>Senior Seminar</td>
-							<td class="false">False</td>
+							<td class="false">False<p class="syl_missing" onclick="sendMissingSyl()">Send email now</p></td>
+							<td class="false">False<p class="syl_missing" onclick="sendMissingSyl()">Send email now</p></td>
 						</tr>
 					</table>
+					<img src="http://iconshow.me/media/images/ui/ios7-icons/png/512/chevron-left.png" class="return_arrow" onclick="hideStatBox()">
 				</div>
+				<br>
+				<div id="only_missing_dept">
+					<input type="checkbox" value="Only show departments with missing syllabi">Only show departments with missing syllabi
+				</div>
+				<div id="only_missing_prof">
+					<input type="checkbox" value="Only show professors with missing syllabi">Only show professors with missing syllabi
+				</div>	
 		</div>
 		
 	</body>
