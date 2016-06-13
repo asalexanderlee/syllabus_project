@@ -1,0 +1,118 @@
+<!DOCTYPE>
+<html>
+	<header>
+      <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+		<script src="https://code.jquery.com/jquery-2.1.4.js"></script>
+		<style>
+
+		#display_board{
+				background-color:#4d4d4d;	
+				width:100%;
+				height:60%;
+				margin-top:2%;
+              box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 8px 20px 0 rgba(0, 0, 0, 0.19);
+			}
+            
+          #nav{
+            background-color:#cccccc;
+            width:15%;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 8px 20px 0 rgba(0, 0, 0, 0.19);
+            height:100%;
+          }
+          
+          #close{
+            margin-left:80%;
+            margin-right:15px;
+            margin-top:5px;
+          }
+          
+          #close:hover{
+             cursor:pointer;
+          }
+          
+          #chart{
+            font-family:"helvetica";
+            text-align:center;
+            padding-bottom:5px;
+            border-bottom:2px solid #b3b3b3;
+          }
+          
+          .graph_choices{
+            color:#2d2d86;
+            padding-left:10px;
+            margin:0px;
+            padding-right:5px;
+            padding-bottom:10px;
+            padding-top:10px;
+            font-family:"helvetica";
+          }
+          
+          .graph_choices:hover{
+            cursor:pointer;
+            background-color:#bfbfbf;
+          }
+          
+          h1{
+            font-family:"helvetica";
+            text-align:center;
+            margin-top:10px;
+            color:white;
+          }
+          
+          body{
+            background-color:#660000;
+            padding:0px;
+            margin:0px;
+          }
+          
+          #dep_list{
+            height:200px;
+            overflow:scroll;
+            display:inline-block;
+            margin-left:20%;
+            margin-top:1%;
+            width:20%;
+          }
+          
+          .dep_submit{
+            width:100%;
+            margin:0px;
+            padding:10px;
+            border:1px solid #cccccc;
+            background-color:#e6e6e6;
+          }
+          .dep_submit:hover{
+            cursor:pointer;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 8px 20px 0 rgba(0, 0, 0, 0.19);
+            background-color:#cce5ff;
+          }
+          
+			
+		</style>
+	</header>
+
+	<body>
+      <h1>Syllabi Manager</h1>
+		<div id="display_board">
+          <div id="nav">
+            <i class="material-icons" id="close">close</i>
+            <h3 id="chart">Chart...</h3>
+            <p class="graph_choices">Basic Statistics</p>
+            <p class="graph_choices">Syllabi Missing Per Department</p>
+            <p class="graph_choices">Learning Outcomes Missing Per Department</p>
+            <p class="graph_choices">Professors with Highest No. of Syllabi Missing</p>
+            <p class="graph_choices">Word Cloud</p>
+          </div>
+          
+		</div>
+      <div id="dep_list">
+        <input type="submit" name="dep_submit" class="dep_submit" value="MAT">
+        <input type="submit" name="dep_submit" class="dep_submit" value="MUS">
+        <input type="submit" name="dep_submit" class="dep_submit" value="ENV">
+        <input type="submit" name="dep_submit" class="dep_submit" value="CSC">
+        <input type="submit" name="dep_submit" class="dep_submit" value="ENG">
+        <input type="submit" name="dep_submit" class="dep_submit" value="ART">
+      </div>
+	
+	</body>
+</html>
